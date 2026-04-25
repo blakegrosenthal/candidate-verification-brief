@@ -59,7 +59,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Interview',
+    suggestedNextStep: 'Strong first-screen candidate',
     brief: {
       overallRead:
         'Strong, relevant AE profile with specific workplace services context and clear personal ownership of outbound and quota results.',
@@ -142,7 +142,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Quick screen',
+    suggestedNextStep: 'Quick verification screen',
     brief: {
       overallRead:
         'Potentially strong sales profile, but the application is polished and light on verifiable detail. High fit should be separated from high verification risk.',
@@ -226,7 +226,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Quick screen',
+    suggestedNextStep: 'Quick verification screen',
     brief: {
       overallRead:
         'Strong credibility and relevant outbound evidence, with the main question being readiness for full-cycle AE responsibility.',
@@ -279,7 +279,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her outbound evidence is unusually concrete and aligned with a high-volume commercial motion.',
       suggestedNextStep:
-        'Quick screen for AE readiness and closing exposure.',
+        'Quick verification screen for AE readiness and closing exposure.',
     },
   },
   {
@@ -309,7 +309,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Issue',
-    suggestedNextStep: 'Review manually',
+    suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
         'Relevant title and category exposure, but the application does not provide enough specific evidence to trust the strongest claims without follow-up.',
@@ -363,7 +363,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The role history is relevant enough to merit manual review if the recruiter needs more AE options.',
       suggestedNextStep:
-        'Review manually; only advance if the recruiter wants to spend a short screen resolving evidence gaps.',
+        'Manual review; only advance if the recruiter wants to spend a short screen resolving evidence gaps.',
     },
   },
   {
@@ -393,7 +393,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Review manually',
+    suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
         'Credible workplace-services seller with useful buyer context, but the compensation expectation is far above range and CRM/SaaS fit needs testing.',
@@ -447,7 +447,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her buyer knowledge and specific sales evidence could be useful if expectations are flexible.',
       suggestedNextStep:
-        'Review manually for compensation and time-zone alignment before any full interview.',
+        'Manual review for compensation and time-zone alignment before any full interview.',
     },
   },
   {
@@ -477,7 +477,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Medium',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Quick screen',
+    suggestedNextStep: 'Quick verification screen',
     brief: {
       overallRead:
         'Potentially valuable outbound operator, but the brief should test whether his leadership claims translate into personal AE selling.',
@@ -531,7 +531,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'If he is comfortable returning to individual contribution, the outbound systems experience may be useful.',
       suggestedNextStep:
-        'Quick screen focused on personal quota ownership and appetite for hands-on selling.',
+        'Quick verification screen focused on personal quota ownership and appetite for hands-on selling.',
     },
   },
   {
@@ -561,7 +561,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Quick screen',
+    suggestedNextStep: 'Quick verification screen',
     brief: {
       overallRead:
         'Credible commercial seller with strong account expansion evidence, but the key gap is net-new outbound and closing from cold prospecting.',
@@ -615,7 +615,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her credibility is strong, and the buyer/domain overlap may shorten ramp time.',
       suggestedNextStep:
-        'Quick screen to test outbound readiness and new-business motivation.',
+        'Quick verification screen to test outbound readiness and new-business motivation.',
     },
   },
   {
@@ -645,7 +645,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Review manually',
+    suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
         'Not a perfect fit on seniority or SaaS experience, but the evidence is credible and shows relevant outbound behavior.',
@@ -699,7 +699,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The candidate shows real outbound evidence and buyer familiarity despite a lower fit signal.',
       suggestedNextStep:
-        'Review manually as a possible high-upside quick screen if the team is open to nontraditional backgrounds.',
+        'Manual review as a possible high-upside quick screen if the team is open to nontraditional backgrounds.',
     },
   },
   {
@@ -729,7 +729,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Weak',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Review manually',
+    suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
         'Role history appears highly relevant, but the application is too generic to trust without probing specific deals and metrics.',
@@ -783,7 +783,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The market and buyer experience could be a strong match if specifics check out quickly.',
       suggestedNextStep:
-        'Review manually; use a short screen only if the recruiter wants to validate the highly relevant background.',
+        'Manual review; use a short screen only if the recruiter wants to validate the highly relevant background.',
     },
   },
   {
@@ -813,7 +813,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Quick screen',
+    suggestedNextStep: 'Quick verification screen',
     brief: {
       overallRead:
         'Good buyer and domain relevance, with verification needed around CRM maturity, quota ownership, and whether expansion work maps to new-business AE selling.',
@@ -867,7 +867,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Buyer relevance is strong, and the answers suggest practical selling judgment.',
       suggestedNextStep:
-        'Quick screen to verify CRM discipline, quota ownership, and source of pipeline.',
+        'Quick verification screen to verify CRM discipline, quota ownership, and source of pipeline.',
     },
   },
   {
@@ -897,7 +897,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Medium',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Interview',
+    suggestedNextStep: 'Strong first-screen candidate',
     brief: {
       overallRead:
         'Likely relevant AE with strong domain overlap, but the screen should isolate her individual contribution from regional or cross-functional results.',
@@ -981,7 +981,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Weak',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Do not prioritize',
+    suggestedNextStep: 'Lower priority screen',
     brief: {
       overallRead:
         'Motivated sales candidate, but the application does not show the B2B outbound and quota evidence needed for this role.',
@@ -1035,7 +1035,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Could be considered only for a more junior sales track if one exists.',
       suggestedNextStep:
-        'Do not prioritize for this AE opening; retain only if pipeline needs change.',
+        'Lower priority screen for this AE opening; retain only if pipeline needs change.',
     },
   },
   {
@@ -1065,7 +1065,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Interview',
+    suggestedNextStep: 'Strong first-screen candidate',
     brief: {
       overallRead:
         'Very strong role and buyer match with specific quota and deal evidence. Main verification point is source quality and personal ownership.',
@@ -1148,7 +1148,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Review manually',
+    suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
         'Credible buyer expert with strong consultative examples, but the recruiter should verify fit for a quota-carrying AE role and structured sales environment.',
@@ -1202,7 +1202,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her buyer insight and consultative credibility may be valuable for complex workplace-experience deals.',
       suggestedNextStep:
-        'Review manually; screen only if the team is open to nontraditional AE profiles.',
+        'Manual review; screen only if the team is open to nontraditional AE profiles.',
     },
   },
 ]

@@ -28,7 +28,7 @@ function BriefSection({
   children: React.ReactNode
 }) {
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <div className="mb-3 flex items-center gap-2">
         <span className="flex size-8 items-center justify-center rounded-md bg-slate-100 text-slate-600">
           <Icon size={17} />
@@ -63,12 +63,12 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
   }
 
   return (
-    <aside className="grid gap-4">
-      <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+    <aside className="grid gap-4 rounded-lg border border-slate-300 bg-slate-50 p-3 shadow-sm">
+      <section className="rounded-lg border border-sky-200 bg-white p-5 shadow-sm">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-              Candidate Verification Brief
+              Selected Candidate Verification Brief
             </p>
             <h2 className="mt-1 text-2xl font-semibold text-slate-950">{candidate.name}</h2>
             <p className="mt-1 text-sm text-slate-500">{candidate.currentRole}</p>
@@ -86,7 +86,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
             Evidence: {candidate.evidenceStrength}
           </Badge>
           <Badge tone={riskTone(candidate.genericAnswerRisk)}>
-            Generic risk: {candidate.genericAnswerRisk}
+            Generic answers: {candidate.genericAnswerRisk}
           </Badge>
           <Badge tone={instructionTone(candidate.instructionFollowing)}>
             Instructions: {candidate.instructionFollowing}

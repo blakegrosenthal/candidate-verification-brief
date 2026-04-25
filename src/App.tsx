@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import {
   AlertCircle,
   ClipboardList,
+  FileCheck2,
   FileWarning,
   Gauge,
   SearchCheck,
@@ -67,7 +68,9 @@ function App() {
 
   const metrics = useMemo(() => {
     const recommended = candidates.filter((candidate) =>
-      ['Interview', 'Quick screen'].includes(candidate.suggestedNextStep),
+      ['Strong first-screen candidate', 'Quick verification screen'].includes(
+        candidate.suggestedNextStep,
+      ),
     ).length
 
     return {
@@ -136,7 +139,7 @@ function App() {
           <DashboardCard
             label="Recommended first screens"
             value={metrics.recommended}
-            detail="Interview or quick screen"
+            detail="Strong or verification-focused"
             icon={ClipboardList}
           />
           <DashboardCard
@@ -152,22 +155,45 @@ function App() {
             icon={ShieldQuestion}
           />
           <DashboardCard
-            label="Generic answer risk"
+            label="Generic answers"
             value={metrics.genericRisk}
             detail="Polished or copy-paste sounding"
             icon={AlertCircle}
           />
           <DashboardCard
-            label="Instruction issues"
+            label="Missed instructions"
             value={metrics.instructionIssues}
             detail="Partial or missed instructions"
             icon={FileWarning}
           />
         </section>
 
-        <div className="grid gap-6 xl:grid-cols-[390px_minmax(0,1fr)]">
-          <RoleCriteriaPanel />
-          <div className="grid gap-5">
+        <RoleCriteriaPanel />
+
+        <section className="grid items-start gap-5 2xl:grid-cols-[minmax(680px,0.9fr)_minmax(560px,1.1fr)]">
+          <div className="grid gap-4">
+            <section className="grid gap-3 md:grid-cols-2">
+              <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                  <ShieldQuestion size={17} className="text-rose-600" />
+                  Verification risk
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Verification risk means the candidate may look qualified, but key claims are
+                  vague, unsupported, generic, or need to be confirmed in the first screen.
+                </p>
+              </article>
+              <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                  <FileCheck2 size={17} className="text-emerald-600" />
+                  Evidence strength
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Evidence strength reflects how clearly the candidate supports their claims with
+                  specific examples, metrics, tools, or ownership.
+                </p>
+              </article>
+            </section>
             <Filters
               filters={filters}
               search={search}
@@ -180,9 +206,10 @@ function App() {
               onSelectCandidate={selectCandidate}
             />
           </div>
-        </div>
-
-        <VerificationBrief candidate={selectedCandidate} />
+          <div className="2xl:sticky 2xl:top-5 2xl:max-h-[calc(100vh-2.5rem)] 2xl:overflow-y-auto">
+            <VerificationBrief candidate={selectedCandidate} />
+          </div>
+        </section>
       </div>
     </main>
   )

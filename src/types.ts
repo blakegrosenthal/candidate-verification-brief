@@ -2,10 +2,10 @@ export type Signal = 'High' | 'Medium' | 'Low'
 export type EvidenceStrength = 'Strong' | 'Mixed' | 'Weak'
 export type InstructionFollowing = 'Good' | 'Partial' | 'Issue'
 export type SuggestedNextStep =
-  | 'Interview'
-  | 'Quick screen'
-  | 'Review manually'
-  | 'Do not prioritize'
+  | 'Strong first-screen candidate'
+  | 'Quick verification screen'
+  | 'Manual review'
+  | 'Lower priority screen'
 
 export type InstructionCheck = {
   instruction: string

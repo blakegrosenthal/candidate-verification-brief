@@ -10,7 +10,13 @@ export type FilterState = {
 }
 
 const signalOptions = ['All', 'High', 'Medium', 'Low'] as const
-const nextStepOptions = ['All', 'Interview', 'Quick screen', 'Review manually', 'Do not prioritize'] as const
+const nextStepOptions = [
+  'All',
+  'Strong first-screen candidate',
+  'Quick verification screen',
+  'Manual review',
+  'Lower priority screen',
+] as const
 const instructionOptions = ['All', 'Good', 'Partial', 'Issue'] as const
 
 function SelectFilter<T extends string>({
@@ -55,7 +61,7 @@ export function Filters({
 }) {
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="grid gap-3 lg:grid-cols-[minmax(260px,1.3fr)_repeat(5,minmax(145px,1fr))]">
+      <div className="grid gap-3 lg:grid-cols-[minmax(240px,1.4fr)_repeat(5,minmax(132px,1fr))]">
         <label className="grid gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
           Search
           <div className="relative">
@@ -91,7 +97,7 @@ export function Filters({
           onChange={(value) => onFilterChange('suggestedNextStep', value)}
         />
         <SelectFilter
-          label="Generic risk"
+          label="Generic answers"
           value={filters.genericAnswerRisk}
           options={signalOptions}
           onChange={(value) => onFilterChange('genericAnswerRisk', value)}

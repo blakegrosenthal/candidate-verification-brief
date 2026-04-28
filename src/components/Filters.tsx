@@ -12,10 +12,10 @@ export type FilterState = {
 const signalOptions = ['All', 'High', 'Medium', 'Low'] as const
 const nextStepOptions = [
   'All',
-  'Strong first-screen candidate',
-  'Quick verification screen',
+  'Ready for targeted screen',
+  'Verification priority',
   'Manual review',
-  'Lower priority screen',
+  'Role-alignment review',
 ] as const
 const instructionOptions = ['All', 'Good', 'Partial', 'Issue'] as const
 
@@ -79,19 +79,19 @@ export function Filters({
           </div>
         </label>
         <SelectFilter
-          label="Fit signal"
+          label="Role alignment"
           value={filters.fitSignal}
           options={signalOptions}
           onChange={(value) => onFilterChange('fitSignal', value)}
         />
         <SelectFilter
-          label="Verification risk"
+          label="Verification concern"
           value={filters.verificationRisk}
           options={signalOptions}
           onChange={(value) => onFilterChange('verificationRisk', value)}
         />
         <SelectFilter
-          label="Next step"
+          label="Screen focus"
           value={filters.suggestedNextStep}
           options={nextStepOptions}
           onChange={(value) => onFilterChange('suggestedNextStep', value)}

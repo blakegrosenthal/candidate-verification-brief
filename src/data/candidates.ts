@@ -59,7 +59,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Strong first-screen candidate',
+    suggestedNextStep: 'Ready for targeted screen',
     brief: {
       overallRead:
         'Strong, relevant AE profile with specific workplace services context and clear personal ownership of outbound and quota results.',
@@ -112,7 +112,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her evidence is specific, relevant, and already aligned with the buyer persona.',
       suggestedNextStep:
-        'Move to first interview; focus the screen on deal ownership, cycle complexity, and Salesforce depth.',
+        'Use a targeted screen; focus the screen on deal ownership, cycle complexity, and Salesforce depth.',
     },
   },
   {
@@ -142,7 +142,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Quick verification screen',
+    suggestedNextStep: 'Verification priority',
     brief: {
       overallRead:
         'Potentially strong sales profile, but the application is polished and light on verifiable detail. High fit should be separated from high verification risk.',
@@ -196,7 +196,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The underlying AE background may be very relevant if the claimed ownership checks out quickly.',
       suggestedNextStep:
-        'Run a short verification-focused screen before investing in a full interview loop.',
+        'Run a short verification-focused screen before investing in a later-stage process.',
     },
   },
   {
@@ -226,7 +226,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Quick verification screen',
+    suggestedNextStep: 'Verification priority',
     brief: {
       overallRead:
         'Strong credibility and relevant outbound evidence, with the main question being readiness for full-cycle AE responsibility.',
@@ -279,7 +279,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her outbound evidence is unusually concrete and aligned with a high-volume commercial motion.',
       suggestedNextStep:
-        'Quick verification screen for AE readiness and closing exposure.',
+        'Verification priority for AE readiness and closing exposure.',
     },
   },
   {
@@ -363,7 +363,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The role history is relevant enough to merit manual review if the recruiter needs more AE options.',
       suggestedNextStep:
-        'Manual review; only advance if the recruiter wants to spend a short screen resolving evidence gaps.',
+        'Manual review; use a short verification call to resolve evidence gaps if needed.',
     },
   },
   {
@@ -447,7 +447,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her buyer knowledge and specific sales evidence could be useful if expectations are flexible.',
       suggestedNextStep:
-        'Manual review for compensation and time-zone alignment before any full interview.',
+        'Manual review for compensation and time-zone alignment before deeper evaluation.',
     },
   },
   {
@@ -477,7 +477,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Medium',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Quick verification screen',
+    suggestedNextStep: 'Verification priority',
     brief: {
       overallRead:
         'Potentially valuable outbound operator, but the brief should test whether his leadership claims translate into personal AE selling.',
@@ -531,7 +531,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'If he is comfortable returning to individual contribution, the outbound systems experience may be useful.',
       suggestedNextStep:
-        'Quick verification screen focused on personal quota ownership and appetite for hands-on selling.',
+        'Verification priority focused on personal quota ownership and appetite for hands-on selling.',
     },
   },
   {
@@ -561,7 +561,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Quick verification screen',
+    suggestedNextStep: 'Verification priority',
     brief: {
       overallRead:
         'Credible commercial seller with strong account expansion evidence, but the key gap is net-new outbound and closing from cold prospecting.',
@@ -615,7 +615,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her credibility is strong, and the buyer/domain overlap may shorten ramp time.',
       suggestedNextStep:
-        'Quick verification screen to test outbound readiness and new-business motivation.',
+        'Verification priority to test outbound readiness and new-business motivation.',
     },
   },
   {
@@ -699,7 +699,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The candidate shows real outbound evidence and buyer familiarity despite a lower fit signal.',
       suggestedNextStep:
-        'Manual review as a possible high-upside quick screen if the team is open to nontraditional backgrounds.',
+        'Manual review for a possible high-upside screen if the team is open to nontraditional backgrounds.',
     },
   },
   {
@@ -739,7 +739,7 @@ export const candidates: Candidate[] = [
         'Compensation expectations are within range.',
       ],
       claimsToVerify: [
-        'Ask for exact Presidents Club year, quota, attainment, and ranking denominator.',
+        'Ask for exact Presidents Club year, quota, attainment, and comparison group.',
         'Clarify whether she owned outbound prospecting or primarily worked inbound/SDR-sourced pipeline.',
         'Request one specific deal example with buyer, ACV, source, and her personal actions.',
       ],
@@ -813,7 +813,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Quick verification screen',
+    suggestedNextStep: 'Verification priority',
     brief: {
       overallRead:
         'Good buyer and domain relevance, with verification needed around CRM maturity, quota ownership, and whether expansion work maps to new-business AE selling.',
@@ -867,7 +867,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Buyer relevance is strong, and the answers suggest practical selling judgment.',
       suggestedNextStep:
-        'Quick verification screen to verify CRM discipline, quota ownership, and source of pipeline.',
+        'Verification priority to verify CRM discipline, quota ownership, and source of pipeline.',
     },
   },
   {
@@ -897,7 +897,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Medium',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Strong first-screen candidate',
+    suggestedNextStep: 'Ready for targeted screen',
     brief: {
       overallRead:
         'Likely relevant AE with strong domain overlap, but the screen should isolate her individual contribution from regional or cross-functional results.',
@@ -951,7 +951,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The domain, buyer, and compensation alignment are strong enough to justify a focused first screen.',
       suggestedNextStep:
-        'Move to interview with a first-screen focus on personal ownership and outbound source mix.',
+        'Use a targeted screen with a first-screen focus on personal ownership and outbound source mix.',
     },
   },
   {
@@ -981,7 +981,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Weak',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Lower priority screen',
+    suggestedNextStep: 'Role-alignment review',
     brief: {
       overallRead:
         'Motivated sales candidate, but the application does not show the B2B outbound and quota evidence needed for this role.',
@@ -1035,7 +1035,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Could be considered only for a more junior sales track if one exists.',
       suggestedNextStep:
-        'Lower priority screen for this AE opening; retain only if pipeline needs change.',
+        'Role-alignment review; revisit if the team opens a more junior sales track.',
     },
   },
   {
@@ -1065,7 +1065,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Good',
-    suggestedNextStep: 'Strong first-screen candidate',
+    suggestedNextStep: 'Ready for targeted screen',
     brief: {
       overallRead:
         'Very strong role and buyer match with specific quota and deal evidence. Main verification point is source quality and personal ownership.',
@@ -1118,7 +1118,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The role, buyer, and deal evidence are tightly aligned with the opening.',
       suggestedNextStep:
-        'Move to interview; verify source mix and deal-cycle depth in the first screen.',
+        'Use a targeted screen; verify source mix and deal-cycle depth in the first screen.',
     },
   },
   {
@@ -1202,7 +1202,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her buyer insight and consultative credibility may be valuable for complex workplace-experience deals.',
       suggestedNextStep:
-        'Manual review; screen only if the team is open to nontraditional AE profiles.',
+        'Manual review if the team is open to nontraditional AE profiles.',
     },
   },
 ]

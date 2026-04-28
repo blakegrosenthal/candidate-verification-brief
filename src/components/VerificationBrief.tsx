@@ -29,6 +29,30 @@ function uniqueItems(items: string[]) {
   return Array.from(new Set(items.filter(Boolean)))
 }
 
+function recruiterTakeaway(candidate: Candidate) {
+  if (candidate.id === 'maya-patel') {
+    return 'Candidate appears aligned, but the first screen should verify quota ownership, deal size, sales cycle, and Salesforce depth.'
+  }
+
+  if (candidate.id === 'ethan-brooks') {
+    return 'Candidate may be worth a screen, but several claims are vague or unsupported. Use the first call to pressure test whether the experience is real, specific, and personally owned.'
+  }
+
+  if (candidate.id === 'marcus-green') {
+    return 'Strong outbound story on paper. Pressure test whether the claimed pipeline gains were personally owned and whether he wants hands-on AE work.'
+  }
+
+  if (candidate.verificationRisk === 'High') {
+    return 'Looks relevant on paper, but the first screen should pressure test vague claims, ownership, and examples.'
+  }
+
+  if (candidate.verificationRisk === 'Medium') {
+    return 'Use the first screen to clarify the main gap before trusting the strongest claims.'
+  }
+
+  return 'Use the first screen to confirm the strongest evidence and calibrate role alignment.'
+}
+
 function BriefBlock({
   title,
   children,
@@ -84,7 +108,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
 
     const instructionFlags = candidate.brief.instructionChecks
       .filter((check) => check.flag !== 'Good')
-      .map((check) => `Missed instruction: ${check.instruction}.`)
+      .map((check) => `Instruction issue: ${check.instruction}.`)
 
     const genericFlag =
       candidate.genericAnswerRisk !== 'Low'
@@ -100,6 +124,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
 
     return {
       overallRead: firstSentences(candidate.brief.overallRead, 2),
+      takeaway: recruiterTakeaway(candidate),
       whyFlagged,
       claimsToVerify: candidate.brief.claimsToVerify.slice(0, 3),
       questions: candidate.brief.firstScreenQuestions.slice(0, 3),
@@ -131,9 +156,11 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
           </Badge>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
-          <Badge tone={signalTone(candidate.fitSignal)}>Fit: {candidate.fitSignal}</Badge>
+          <Badge tone={signalTone(candidate.fitSignal)}>
+            Role alignment: {candidate.fitSignal}
+          </Badge>
           <Badge tone={riskTone(candidate.verificationRisk)}>
-            Verification risk: {candidate.verificationRisk}
+            Verification concern: {candidate.verificationRisk}
           </Badge>
           <Badge tone={evidenceTone(candidate.evidenceStrength)}>
             Evidence: {candidate.evidenceStrength}
@@ -142,6 +169,11 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
       </section>
 
       <section className="grid gap-4 p-5">
+        <section className="rounded-md border border-sky-200 bg-sky-50 p-4">
+          <h3 className="text-sm font-semibold text-sky-950">Recruiter takeaway</h3>
+          <p className="mt-2 text-sm leading-6 text-sky-900">{compactBrief.takeaway}</p>
+        </section>
+
         <BriefBlock title="Overall read">
           <p className="text-sm leading-6 text-slate-650">{compactBrief.overallRead}</p>
         </BriefBlock>
@@ -247,7 +279,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
                 <section>
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                     <ThumbsUp size={16} className="text-emerald-600" />
-                    Reason to still interview
+                    Reason to keep in review
                   </div>
                   <p className="mt-2 text-sm leading-6 text-slate-650">
                     {candidate.brief.reasonToStillInterview}

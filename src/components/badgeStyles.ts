@@ -32,8 +32,8 @@ export function instructionTone(value: InstructionFollowing): BadgeTone {
 }
 
 export function nextStepTone(value: SuggestedNextStep): BadgeTone {
-  if (value === 'Strong first-screen candidate') return 'blue'
-  if (value === 'Quick verification screen') return 'violet'
+  if (value === 'Ready for targeted screen') return 'blue'
+  if (value === 'Verification priority') return 'violet'
   if (value === 'Manual review') return 'amber'
   return 'slate'
 }

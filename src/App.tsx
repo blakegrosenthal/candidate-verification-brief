@@ -64,15 +64,9 @@ function App() {
     filteredCandidates[0]
 
   const metrics = useMemo(() => {
-    const recommended = candidates.filter((candidate) =>
-      ['Strong first-screen candidate', 'Quick verification screen'].includes(
-        candidate.suggestedNextStep,
-      ),
-    ).length
-
     return {
       total: candidates.length,
-      recommended,
+      briefsReady: candidates.length,
       highRisk: candidates.filter((candidate) => candidate.verificationRisk === 'High').length,
       instructionIssues: candidates.filter((candidate) =>
         ['Partial', 'Issue'].includes(candidate.instructionFollowing),
@@ -116,6 +110,10 @@ function App() {
                 first screens by surfacing claims to verify, weak evidence, generic answers, and
                 instruction-following issues.
               </p>
+              <p className="mt-3 inline-flex rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm leading-5 text-slate-600">
+                Verification risk does not mean fraud. It means key claims need confirmation before
+                the recruiter trusts them.
+              </p>
             </div>
             <div className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600 lg:max-w-sm">
               <span className="font-semibold text-slate-900">Current queue:</span> Commercial
@@ -132,15 +130,15 @@ function App() {
             icon={Users}
           />
           <DashboardCard
-            label="Recommended first screens"
-            value={metrics.recommended}
-            detail="Ready for recruiter prep"
+            label="Briefs ready for review"
+            value={metrics.briefsReady}
+            detail="Verification notes generated"
             icon={ClipboardList}
           />
           <DashboardCard
-            label="High verification risk"
+            label="High verification concern"
             value={metrics.highRisk}
-            detail="Claims need a tighter screen"
+            detail="Claims needing verification"
             icon={ShieldQuestion}
           />
           <DashboardCard

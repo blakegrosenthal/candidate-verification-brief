@@ -26,7 +26,7 @@ export function evidenceTone(value: EvidenceStrength): BadgeTone {
 }
 
 export function instructionTone(value: InstructionFollowing): BadgeTone {
-  if (value === 'Good') return 'green'
+  if (value === 'Complete') return 'green'
   if (value === 'Partial') return 'amber'
   return 'red'
 }

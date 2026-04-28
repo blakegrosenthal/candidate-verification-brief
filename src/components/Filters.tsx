@@ -1,23 +1,15 @@
 import { Search } from 'lucide-react'
-import type { InstructionFollowing, Signal, SuggestedNextStep } from '../types'
+import type { InstructionFollowing, Signal } from '../types'
 
 export type FilterState = {
   fitSignal: 'All' | Signal
   verificationRisk: 'All' | Signal
-  suggestedNextStep: 'All' | SuggestedNextStep
   genericAnswerRisk: 'All' | Signal
   instructionFollowing: 'All' | InstructionFollowing
 }
 
 const signalOptions = ['All', 'High', 'Medium', 'Low'] as const
-const nextStepOptions = [
-  'All',
-  'Ready for targeted screen',
-  'Verification priority',
-  'Manual review',
-  'Role-alignment review',
-] as const
-const instructionOptions = ['All', 'Good', 'Partial', 'Issue'] as const
+const instructionOptions = ['All', 'Complete', 'Partial', 'Issue'] as const
 
 function SelectFilter<T extends string>({
   label,
@@ -61,7 +53,7 @@ export function Filters({
 }) {
   return (
     <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="grid gap-3 lg:grid-cols-[minmax(240px,1.4fr)_repeat(5,minmax(132px,1fr))]">
+      <div className="grid gap-3 lg:grid-cols-[minmax(240px,1.4fr)_repeat(4,minmax(132px,1fr))]">
         <label className="grid gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slate-500">
           Search
           <div className="relative">
@@ -91,19 +83,13 @@ export function Filters({
           onChange={(value) => onFilterChange('verificationRisk', value)}
         />
         <SelectFilter
-          label="Screen focus"
-          value={filters.suggestedNextStep}
-          options={nextStepOptions}
-          onChange={(value) => onFilterChange('suggestedNextStep', value)}
-        />
-        <SelectFilter
           label="Generic answers"
           value={filters.genericAnswerRisk}
           options={signalOptions}
           onChange={(value) => onFilterChange('genericAnswerRisk', value)}
         />
         <SelectFilter
-          label="Instructions"
+          label="Instruction following"
           value={filters.instructionFollowing}
           options={instructionOptions}
           onChange={(value) => onFilterChange('instructionFollowing', value)}

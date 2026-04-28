@@ -58,7 +58,7 @@ export const candidates: Candidate[] = [
     verificationRisk: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
-    instructionFollowing: 'Good',
+    instructionFollowing: 'Complete',
     suggestedNextStep: 'Ready for targeted screen',
     brief: {
       overallRead:
@@ -86,19 +86,19 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$100k-$110k base, $200k-$220k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and within expected range.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'References employee experience buyers and workplace food programs.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific to the role rather than generic growth language.',
         },
         {
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: 'Sourced and closed a logistics account from outbound.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Clear personal ownership with measurable outcome.',
         },
       ],
@@ -127,7 +127,7 @@ export const candidates: Candidate[] = [
       'Mentions leading outbound strategy for a 12-person pod',
     ],
     applicationAnswer:
-      'I bring a proven track record of exceeding aggressive revenue targets, building executive relationships, and transforming pipeline strategy in competitive markets. I am excited to help your company scale revenue efficiently.',
+      "I am excited about this opportunity because your company is growing fast and I believe my proven sales background, leadership skills, and ability to build strong relationships would help drive revenue and support the team's continued success.",
     screeningResponses: {
       salary: '$115k base, $230k OTE',
       companyInterest:
@@ -162,15 +162,15 @@ export const candidates: Candidate[] = [
         'Leadership claim is unsupported by reporting line, scope, or results.',
       ],
       genericAnswerNotes: [
-        'Company interest answer could apply to almost any growth-stage SaaS company.',
+        'Company interest answer relies on broad growth-company language.',
+        'Application answer highlights sales background, leadership, and relationships without company-specific detail.',
         'Sales result answer uses polished phrases but lacks baseline, actions, and personal ownership.',
-        'Does not clearly answer why this specific role is interesting.',
       ],
       instructionChecks: [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$115k base, $230k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and near the top of the expected range.',
         },
         {
@@ -225,7 +225,7 @@ export const candidates: Candidate[] = [
     verificationRisk: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
-    instructionFollowing: 'Good',
+    instructionFollowing: 'Complete',
     suggestedNextStep: 'Verification priority',
     brief: {
       overallRead:
@@ -253,19 +253,19 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$88k-$95k base, $165k-$180k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific, though slightly low for the role.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'Connects outbound-heavy commercial selling to her AE transition.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and credible.',
         },
         {
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: 'Built territory list and booked meetings that created pipeline.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Personal contribution is clear.',
         },
       ],
@@ -392,7 +392,7 @@ export const candidates: Candidate[] = [
     verificationRisk: 'Medium',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
-    instructionFollowing: 'Good',
+    instructionFollowing: 'Complete',
     suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
@@ -421,19 +421,19 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$140k base, $280k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific, but far outside the expected range.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'Connects workplace services buyer familiarity to software-enabled selling.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and relevant.',
         },
         {
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: 'Reopened dormant accounts and converted nine contracts.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Clear personal ownership.',
         },
       ],
@@ -505,7 +505,7 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$105k-$120k base, $210k-$240k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific, but upper end is above posted range.',
         },
         {
@@ -560,7 +560,7 @@ export const candidates: Candidate[] = [
     verificationRisk: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
-    instructionFollowing: 'Good',
+    instructionFollowing: 'Complete',
     suggestedNextStep: 'Verification priority',
     brief: {
       overallRead:
@@ -589,19 +589,19 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$95k-$105k base, $190k-$210k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and within range.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'Familiar buyer persona plus desired new-business motion.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and self-aware.',
         },
         {
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: '$82k ARR expansion from adoption plan.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Concrete, though expansion rather than net-new.',
         },
       ],
@@ -644,7 +644,7 @@ export const candidates: Candidate[] = [
     verificationRisk: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
-    instructionFollowing: 'Good',
+    instructionFollowing: 'Complete',
     suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
@@ -673,19 +673,19 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$90k-$96k base, $180k-$190k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and within posted range.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'Office-manager buyer overlap and more strategic deal motion.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and credible.',
         },
         {
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: 'Called 63 companies, booked 11 meetings, closed four first orders.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Clear personal outbound result.',
         },
       ],
@@ -757,7 +757,7 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$105k-$115k base, $210k-$230k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and within range.',
         },
         {
@@ -812,7 +812,7 @@ export const candidates: Candidate[] = [
     verificationRisk: 'Medium',
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Low',
-    instructionFollowing: 'Good',
+    instructionFollowing: 'Complete',
     suggestedNextStep: 'Verification priority',
     brief: {
       overallRead:
@@ -841,19 +841,19 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$92k-$102k base, $185k-$200k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and within range.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'Office food and employee experience overlap with scalable product.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and relevant.',
         },
         {
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: 'Expanded property management account from one to five buildings.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Concrete, though missing revenue and source.',
         },
       ],
@@ -925,13 +925,13 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$100k-$112k base, $205k-$225k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and within range.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'Facilities buyer and commercial segment match current deal size.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and relevant.',
         },
         {
@@ -1064,7 +1064,7 @@ export const candidates: Candidate[] = [
     verificationRisk: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
-    instructionFollowing: 'Good',
+    instructionFollowing: 'Complete',
     suggestedNextStep: 'Ready for targeted screen',
     brief: {
       overallRead:
@@ -1092,19 +1092,19 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$108k-$115k base, $215k-$230k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and inside the posted top end.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'Buyer overlap and outbound role expectations.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and relevant.',
         },
         {
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: '$118k ARR tech account sourced through webinar follow-up.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Concrete with personal ownership to verify.',
         },
       ],
@@ -1147,7 +1147,7 @@ export const candidates: Candidate[] = [
     verificationRisk: 'Medium',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
-    instructionFollowing: 'Good',
+    instructionFollowing: 'Complete',
     suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
@@ -1176,19 +1176,19 @@ export const candidates: Candidate[] = [
         {
           instruction: 'Provide a specific target salary range',
           candidateAnswer: '$110k-$120k base, $220k-$240k OTE',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific; slightly above range at the top.',
         },
         {
           instruction: 'Explain why this specific company and role are interesting',
           candidateAnswer: 'Workplace experience problems with clearer product and process.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Specific and credible.',
         },
         {
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: 'Won 600-person client through perk-spend audit and vendor program.',
-          flag: 'Good',
+          flag: 'Complete',
           note: 'Concrete client outcome with personal contribution.',
         },
       ],

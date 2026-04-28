@@ -31,7 +31,8 @@ export function CandidateTable({
         <div>
           <h2 className="text-lg font-semibold text-slate-950">Candidate queue</h2>
           <p className="mt-1 text-sm leading-5 text-slate-500">
-            Select a row to prepare the verification brief. Fit and credibility stay separate.
+            Select a row to prepare the verification brief. Role alignment and verification concern
+            stay separate.
           </p>
           <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs leading-5 text-slate-500">
             <span>
@@ -84,7 +85,7 @@ export function CandidateTable({
                         Generic answers: {candidate.genericAnswerRisk}
                       </span>
                       <span className="rounded-full bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-600">
-                        Instructions: {candidate.instructionFollowing}
+                        Instruction following: {candidate.instructionFollowing}
                       </span>
                     </div>
                   </td>

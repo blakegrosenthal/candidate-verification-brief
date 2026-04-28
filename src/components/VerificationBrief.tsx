@@ -35,7 +35,7 @@ function recruiterTakeaway(candidate: Candidate) {
   }
 
   if (candidate.id === 'ethan-brooks') {
-    return 'Candidate may be worth a screen, but several claims are vague or unsupported. Use the first call to pressure test whether the experience is real, specific, and personally owned.'
+    return 'If this candidate is screened, several claims should be pressure tested because they are vague or unsupported. Use the first call to clarify whether the experience is real, specific, and personally owned.'
   }
 
   if (candidate.id === 'marcus-green') {
@@ -107,7 +107,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
     if (!candidate) return undefined
 
     const instructionFlags = candidate.brief.instructionChecks
-      .filter((check) => check.flag !== 'Good')
+      .filter((check) => check.flag !== 'Complete')
       .map((check) => `Instruction issue: ${check.instruction}.`)
 
     const genericFlag =
@@ -223,7 +223,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
                 <section>
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                     <AlertTriangle size={16} className="text-amber-600" />
-                    Full gaps or inconsistencies
+                    Key gaps or inconsistencies
                   </div>
                   <div className="mt-2">
                     <BulletList items={candidate.brief.gapsOrInconsistencies} />
@@ -279,7 +279,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
                 <section>
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                     <ThumbsUp size={16} className="text-emerald-600" />
-                    Reason to keep in review
+                    Reason to continue review
                   </div>
                   <p className="mt-2 text-sm leading-6 text-slate-650">
                     {candidate.brief.reasonToStillInterview}

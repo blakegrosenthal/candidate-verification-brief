@@ -20,7 +20,6 @@ function App() {
   const [filters, setFilters] = useState<FilterState>({
     fitSignal: 'All',
     verificationRisk: 'All',
-    suggestedNextStep: 'All',
     genericAnswerRisk: 'All',
     instructionFollowing: 'All',
   })
@@ -33,8 +32,6 @@ function App() {
         (filters.fitSignal === 'All' || candidate.fitSignal === filters.fitSignal) &&
         (filters.verificationRisk === 'All' ||
           candidate.verificationRisk === filters.verificationRisk) &&
-        (filters.suggestedNextStep === 'All' ||
-          candidate.suggestedNextStep === filters.suggestedNextStep) &&
         (filters.genericAnswerRisk === 'All' ||
           candidate.genericAnswerRisk === filters.genericAnswerRisk) &&
         (filters.instructionFollowing === 'All' ||

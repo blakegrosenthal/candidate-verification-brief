@@ -30,24 +30,34 @@ export function CandidateTable({
       <div className="flex items-center justify-between gap-3 border-b border-slate-200 px-5 py-4">
         <div>
           <h2 className="text-lg font-semibold text-slate-950">Candidate queue</h2>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm leading-5 text-slate-500">
             Select a row to prepare the verification brief. Fit and credibility stay separate.
           </p>
+          <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs leading-5 text-slate-500">
+            <span>
+              <span className="font-semibold text-slate-700">Verification risk:</span> candidate
+              may look qualified, but key claims need confirmation.
+            </span>
+            <span>
+              <span className="font-semibold text-slate-700">Evidence strength:</span> shows how
+              well claims are supported with examples, metrics, tools, or ownership.
+            </span>
+          </div>
         </div>
         <span className="rounded-md bg-slate-100 px-2.5 py-1 text-sm font-semibold text-slate-600">
           {candidates.length} shown
         </span>
       </div>
-      <div className="overflow-x-auto">
-        <table className="min-w-[880px] w-full text-left text-sm">
+      <div>
+        <table className="w-full table-fixed text-left text-sm">
           <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-[0.1em] text-slate-500">
             <tr>
-              <th className="px-5 py-3 font-semibold">Candidate</th>
-              <th className="px-4 py-3 font-semibold">Current / recent role</th>
-              <th className="px-4 py-3 font-semibold">Fit signal</th>
-              <th className="px-4 py-3 font-semibold">Verification risk</th>
-              <th className="px-4 py-3 font-semibold">Evidence strength</th>
-              <th className="px-5 py-3 font-semibold">Suggested next step</th>
+              <th className="w-[24%] px-4 py-3 font-semibold">Candidate</th>
+              <th className="w-[22%] px-3 py-3 font-semibold">Current / recent role</th>
+              <th className="w-[11%] px-3 py-3 font-semibold">Fit signal</th>
+              <th className="w-[14%] px-3 py-3 font-semibold">Verification risk</th>
+              <th className="w-[14%] px-3 py-3 font-semibold">Evidence strength</th>
+              <th className="w-[15%] px-4 py-3 font-semibold">Suggested next step</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -67,7 +77,7 @@ export function CandidateTable({
                     isSelected && 'bg-sky-50 [box-shadow:inset_3px_0_0_#0284c7]',
                   )}
                 >
-                  <td className="px-5 py-4">
+                  <td className="px-4 py-4 align-top">
                     <div className="font-semibold text-slate-950">{candidate.name}</div>
                     <div className="mt-2 flex flex-wrap gap-1.5">
                       <span className="rounded-full bg-slate-100 px-2 py-1 text-[11px] font-semibold text-slate-600">
@@ -78,23 +88,23 @@ export function CandidateTable({
                       </span>
                     </div>
                   </td>
-                  <td className="max-w-[220px] px-4 py-4 text-slate-700">
+                  <td className="px-3 py-4 align-top leading-5 text-slate-700">
                     {candidate.currentRole}
                   </td>
-                  <td className="px-4 py-4">
+                  <td className="px-3 py-4 align-top">
                     <Badge tone={signalTone(candidate.fitSignal)}>{candidate.fitSignal}</Badge>
                   </td>
-                  <td className="px-4 py-4">
+                  <td className="px-3 py-4 align-top">
                     <Badge tone={riskTone(candidate.verificationRisk)}>
                       {candidate.verificationRisk}
                     </Badge>
                   </td>
-                  <td className="px-4 py-4">
+                  <td className="px-3 py-4 align-top">
                     <Badge tone={evidenceTone(candidate.evidenceStrength)}>
                       {candidate.evidenceStrength}
                     </Badge>
                   </td>
-                  <td className="px-5 py-4">
+                  <td className="px-4 py-4 align-top">
                     <Badge tone={nextStepTone(candidate.suggestedNextStep)}>
                       {candidate.suggestedNextStep}
                     </Badge>

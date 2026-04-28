@@ -63,7 +63,7 @@ export function RoleCriteriaPanel() {
             onClick={() => setIsExpanded((current) => !current)}
             className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-4 focus:ring-sky-100"
           >
-            {isExpanded ? 'Hide criteria' : 'Show criteria'}
+            {isExpanded ? 'Hide criteria' : 'View criteria'}
             <ChevronDown size={16} className={isExpanded ? 'rotate-180 transition' : 'transition'} />
           </button>
         </div>

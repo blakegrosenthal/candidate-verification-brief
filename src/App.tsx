@@ -1,10 +1,7 @@
 import { useMemo, useState } from 'react'
 import {
-  AlertCircle,
   ClipboardList,
-  FileCheck2,
   FileWarning,
-  Gauge,
   SearchCheck,
   ShieldQuestion,
   Users,
@@ -76,9 +73,7 @@ function App() {
     return {
       total: candidates.length,
       recommended,
-      highFit: candidates.filter((candidate) => candidate.fitSignal === 'High').length,
       highRisk: candidates.filter((candidate) => candidate.verificationRisk === 'High').length,
-      genericRisk: candidates.filter((candidate) => candidate.genericAnswerRisk === 'High').length,
       instructionIssues: candidates.filter((candidate) =>
         ['Partial', 'Issue'].includes(candidate.instructionFollowing),
       ).length,
@@ -129,7 +124,7 @@ function App() {
           </div>
         </header>
 
-        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <DashboardCard
             label="Total applicants reviewed"
             value={metrics.total}
@@ -139,26 +134,14 @@ function App() {
           <DashboardCard
             label="Recommended first screens"
             value={metrics.recommended}
-            detail="Strong or verification-focused"
+            detail="Ready for recruiter prep"
             icon={ClipboardList}
-          />
-          <DashboardCard
-            label="High fit candidates"
-            value={metrics.highFit}
-            detail="Fit is not a final decision"
-            icon={Gauge}
           />
           <DashboardCard
             label="High verification risk"
             value={metrics.highRisk}
             detail="Claims need a tighter screen"
             icon={ShieldQuestion}
-          />
-          <DashboardCard
-            label="Generic answers"
-            value={metrics.genericRisk}
-            detail="Polished or copy-paste sounding"
-            icon={AlertCircle}
           />
           <DashboardCard
             label="Missed instructions"
@@ -170,30 +153,8 @@ function App() {
 
         <RoleCriteriaPanel />
 
-        <section className="grid items-start gap-5 2xl:grid-cols-[minmax(680px,0.9fr)_minmax(560px,1.1fr)]">
+        <section className="grid items-start gap-5 2xl:grid-cols-[minmax(760px,0.95fr)_minmax(520px,1.05fr)]">
           <div className="grid gap-4">
-            <section className="grid gap-3 md:grid-cols-2">
-              <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
-                  <ShieldQuestion size={17} className="text-rose-600" />
-                  Verification risk
-                </div>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Verification risk means the candidate may look qualified, but key claims are
-                  vague, unsupported, generic, or need to be confirmed in the first screen.
-                </p>
-              </article>
-              <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
-                  <FileCheck2 size={17} className="text-emerald-600" />
-                  Evidence strength
-                </div>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Evidence strength reflects how clearly the candidate supports their claims with
-                  specific examples, metrics, tools, or ownership.
-                </p>
-              </article>
-            </section>
             <Filters
               filters={filters}
               search={search}

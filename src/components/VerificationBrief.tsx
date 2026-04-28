@@ -1,10 +1,12 @@
+import { useEffect, useMemo, useState } from 'react'
+import type { ReactNode } from 'react'
 import {
   AlertTriangle,
   CheckCircle2,
+  ChevronDown,
   ClipboardCheck,
   FileQuestion,
   MessageSquareText,
-  ShieldQuestion,
   Target,
   ThumbsUp,
 } from 'lucide-react'
@@ -18,31 +20,33 @@ import {
 } from './badgeStyles'
 import type { Candidate } from '../types'
 
-function BriefSection({
+function firstSentences(text: string, count = 1) {
+  const sentences = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) ?? [text]
+  return sentences.slice(0, count).join(' ').trim()
+}
+
+function uniqueItems(items: string[]) {
+  return Array.from(new Set(items.filter(Boolean)))
+}
+
+function BriefBlock({
   title,
-  icon: Icon,
   children,
 }: {
   title: string
-  icon: React.ElementType
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
-    <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-      <div className="mb-3 flex items-center gap-2">
-        <span className="flex size-8 items-center justify-center rounded-md bg-slate-100 text-slate-600">
-          <Icon size={17} />
-        </span>
-        <h3 className="text-base font-semibold text-slate-950">{title}</h3>
-      </div>
-      {children}
+    <section className="border-t border-slate-200 pt-4">
+      <h3 className="text-sm font-semibold text-slate-950">{title}</h3>
+      <div className="mt-2">{children}</div>
     </section>
   )
 }
 
 function BulletList({ items }: { items: string[] }) {
   return (
-    <ul className="space-y-2 text-sm leading-6 text-slate-650">
+    <ul className="space-y-1.5 text-sm leading-6 text-slate-650">
       {items.map((item) => (
         <li key={item} className="flex gap-2">
           <span className="mt-2 size-1.5 shrink-0 rounded-full bg-slate-400" />
@@ -53,8 +57,57 @@ function BulletList({ items }: { items: string[] }) {
   )
 }
 
+function NumberedQuestions({ questions }: { questions: string[] }) {
+  return (
+    <ol className="space-y-2 text-sm leading-6 text-slate-650">
+      {questions.map((question, index) => (
+        <li key={question} className="flex gap-3">
+          <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-sky-100 text-xs font-semibold text-sky-800">
+            {index + 1}
+          </span>
+          <span>{question}</span>
+        </li>
+      ))}
+    </ol>
+  )
+}
+
 export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
-  if (!candidate) {
+  const [isMoreDetailOpen, setIsMoreDetailOpen] = useState(false)
+
+  useEffect(() => {
+    setIsMoreDetailOpen(false)
+  }, [candidate?.id])
+
+  const compactBrief = useMemo(() => {
+    if (!candidate) return undefined
+
+    const instructionFlags = candidate.brief.instructionChecks
+      .filter((check) => check.flag !== 'Good')
+      .map((check) => `Missed instruction: ${check.instruction}.`)
+
+    const genericFlag =
+      candidate.genericAnswerRisk !== 'Low'
+        ? `Generic answers: ${candidate.genericAnswerRisk.toLowerCase()} risk.`
+        : ''
+
+    const whyFlagged = uniqueItems([
+      ...instructionFlags,
+      genericFlag,
+      ...candidate.brief.gapsOrInconsistencies,
+      candidate.brief.concernToTest,
+    ]).slice(0, 3)
+
+    return {
+      overallRead: firstSentences(candidate.brief.overallRead, 2),
+      whyFlagged,
+      claimsToVerify: candidate.brief.claimsToVerify.slice(0, 3),
+      questions: candidate.brief.firstScreenQuestions.slice(0, 3),
+      focus: firstSentences(candidate.brief.suggestedNextStep, 1),
+    }
+  }, [candidate])
+
+  if (!candidate || !compactBrief) {
     return (
       <aside className="rounded-lg border border-slate-200 bg-white p-8 text-center shadow-sm">
         <p className="font-semibold text-slate-950">Select a candidate to view the brief.</p>
@@ -63,8 +116,8 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
   }
 
   return (
-    <aside className="grid gap-4 rounded-lg border border-slate-300 bg-slate-50 p-3 shadow-sm">
-      <section className="rounded-lg border border-sky-200 bg-white p-5 shadow-sm">
+    <aside className="rounded-lg border border-slate-300 bg-white shadow-sm">
+      <section className="border-b border-slate-200 p-5">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
@@ -85,96 +138,156 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
           <Badge tone={evidenceTone(candidate.evidenceStrength)}>
             Evidence: {candidate.evidenceStrength}
           </Badge>
-          <Badge tone={riskTone(candidate.genericAnswerRisk)}>
-            Generic answers: {candidate.genericAnswerRisk}
-          </Badge>
-          <Badge tone={instructionTone(candidate.instructionFollowing)}>
-            Instructions: {candidate.instructionFollowing}
-          </Badge>
         </div>
       </section>
 
-      <BriefSection title="Overall read" icon={Target}>
-        <p className="text-sm leading-6 text-slate-650">{candidate.brief.overallRead}</p>
-      </BriefSection>
+      <section className="grid gap-4 p-5">
+        <BriefBlock title="Overall read">
+          <p className="text-sm leading-6 text-slate-650">{compactBrief.overallRead}</p>
+        </BriefBlock>
 
-      <div className="grid gap-4 xl:grid-cols-2">
-        <BriefSection title="What looks credible" icon={CheckCircle2}>
-          <BulletList items={candidate.brief.credible} />
-        </BriefSection>
-        <BriefSection title="Claims to verify" icon={ShieldQuestion}>
-          <BulletList items={candidate.brief.claimsToVerify} />
-        </BriefSection>
-      </div>
+        <BriefBlock title="Why flagged">
+          <BulletList items={compactBrief.whyFlagged} />
+        </BriefBlock>
 
-      <BriefSection title="Gaps or inconsistencies" icon={AlertTriangle}>
-        <BulletList items={candidate.brief.gapsOrInconsistencies} />
-      </BriefSection>
+        <BriefBlock title="Top claims to verify">
+          <BulletList items={compactBrief.claimsToVerify} />
+        </BriefBlock>
 
-      <BriefSection title="Generic answer notes" icon={MessageSquareText}>
-        <BulletList items={candidate.brief.genericAnswerNotes} />
-      </BriefSection>
+        <BriefBlock title="First-screen questions">
+          <NumberedQuestions questions={compactBrief.questions} />
+        </BriefBlock>
 
-      <BriefSection title="Instruction following" icon={ClipboardCheck}>
-        <div className="grid gap-3">
-          {candidate.brief.instructionChecks.map((check) => (
-            <div key={check.instruction} className="rounded-md border border-slate-200 bg-slate-50 p-3">
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="text-sm font-semibold text-slate-950">{check.instruction}</p>
-                <Badge tone={instructionTone(check.flag)}>{check.flag}</Badge>
+        <BriefBlock title="Suggested first-screen focus">
+          <p className="text-sm leading-6 text-slate-650">{compactBrief.focus}</p>
+        </BriefBlock>
+
+        <section className="rounded-md border border-slate-200 bg-slate-50">
+          <button
+            type="button"
+            aria-expanded={isMoreDetailOpen}
+            onClick={() => setIsMoreDetailOpen((current) => !current)}
+            className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-semibold text-slate-800 transition hover:bg-slate-100 focus:outline-none focus:ring-4 focus:ring-sky-100"
+          >
+            More detail
+            <ChevronDown
+              size={16}
+              className={isMoreDetailOpen ? 'rotate-180 transition' : 'transition'}
+            />
+          </button>
+
+          {isMoreDetailOpen ? (
+            <div className="grid gap-4 border-t border-slate-200 bg-white p-4">
+              <div className="grid gap-4 xl:grid-cols-2">
+                <section>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                    <CheckCircle2 size={16} className="text-emerald-600" />
+                    What looks credible
+                  </div>
+                  <div className="mt-2">
+                    <BulletList items={candidate.brief.credible} />
+                  </div>
+                </section>
+                <section>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                    <AlertTriangle size={16} className="text-amber-600" />
+                    Full gaps or inconsistencies
+                  </div>
+                  <div className="mt-2">
+                    <BulletList items={candidate.brief.gapsOrInconsistencies} />
+                  </div>
+                </section>
               </div>
-              <p className="mt-2 text-sm text-slate-600">
-                <span className="font-semibold text-slate-800">Candidate answer: </span>
-                {check.candidateAnswer}
-              </p>
-              <p className="mt-1 text-sm text-slate-500">{check.note}</p>
+
+              <section>
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                  <MessageSquareText size={16} className="text-slate-500" />
+                  Generic answer notes
+                </div>
+                <div className="mt-2">
+                  <BulletList items={candidate.brief.genericAnswerNotes} />
+                </div>
+              </section>
+
+              <section>
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                  <ClipboardCheck size={16} className="text-sky-700" />
+                  Instruction following breakdown
+                </div>
+                <div className="mt-2 grid gap-2">
+                  {candidate.brief.instructionChecks.map((check) => (
+                    <div
+                      key={check.instruction}
+                      className="rounded-md border border-slate-200 bg-slate-50 p-3"
+                    >
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="text-sm font-semibold text-slate-950">{check.instruction}</p>
+                        <Badge tone={instructionTone(check.flag)}>{check.flag}</Badge>
+                      </div>
+                      <p className="mt-1 text-sm text-slate-600">
+                        <span className="font-semibold text-slate-800">Answer: </span>
+                        {check.candidateAnswer}
+                      </p>
+                      <p className="mt-1 text-sm text-slate-500">{check.note}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              <div className="grid gap-4 xl:grid-cols-2">
+                <section>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                    <AlertTriangle size={16} className="text-rose-600" />
+                    One concern to test
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-650">
+                    {candidate.brief.concernToTest}
+                  </p>
+                </section>
+                <section>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                    <ThumbsUp size={16} className="text-emerald-600" />
+                    Reason to still interview
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-650">
+                    {candidate.brief.reasonToStillInterview}
+                  </p>
+                </section>
+              </div>
+
+              <section>
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                  <Target size={16} className="text-slate-500" />
+                  Application context
+                </div>
+                <div className="mt-3 grid gap-4 xl:grid-cols-2">
+                  <div>
+                    <p className="text-sm font-semibold text-slate-800">Resume highlights</p>
+                    <div className="mt-2">
+                      <BulletList items={candidate.resumeHighlights} />
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-slate-800">Application answer sample</p>
+                    <p className="mt-2 rounded-md border border-slate-200 bg-slate-50 p-3 text-sm leading-6 text-slate-650">
+                      {candidate.applicationAnswer}
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                  <FileQuestion size={16} className="text-slate-500" />
+                  Full first-screen question set
+                </div>
+                <div className="mt-2">
+                  <NumberedQuestions questions={candidate.brief.firstScreenQuestions} />
+                </div>
+              </section>
             </div>
-          ))}
-        </div>
-      </BriefSection>
-
-      <BriefSection title="First-screen questions" icon={FileQuestion}>
-        <ol className="space-y-2 text-sm leading-6 text-slate-650">
-          {candidate.brief.firstScreenQuestions.map((question, index) => (
-            <li key={question} className="flex gap-3">
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-sky-100 text-xs font-semibold text-sky-800">
-                {index + 1}
-              </span>
-              <span>{question}</span>
-            </li>
-          ))}
-        </ol>
-      </BriefSection>
-
-      <div className="grid gap-4 xl:grid-cols-2">
-        <BriefSection title="One concern to test" icon={AlertTriangle}>
-          <p className="text-sm leading-6 text-slate-650">{candidate.brief.concernToTest}</p>
-        </BriefSection>
-        <BriefSection title="Reason to still interview" icon={ThumbsUp}>
-          <p className="text-sm leading-6 text-slate-650">{candidate.brief.reasonToStillInterview}</p>
-        </BriefSection>
-      </div>
-
-      <BriefSection title="Suggested first-screen focus" icon={ClipboardCheck}>
-        <p className="text-sm leading-6 text-slate-650">{candidate.brief.suggestedNextStep}</p>
-      </BriefSection>
-
-      <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
-        <h3 className="text-base font-semibold text-slate-950">Application context</h3>
-        <div className="mt-4 grid gap-4 xl:grid-cols-2">
-          <div>
-            <p className="text-sm font-semibold text-slate-800">Resume highlights</p>
-            <div className="mt-2">
-              <BulletList items={candidate.resumeHighlights} />
-            </div>
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-slate-800">Application answer sample</p>
-            <p className="mt-2 rounded-md border border-slate-200 bg-slate-50 p-3 text-sm leading-6 text-slate-650">
-              {candidate.applicationAnswer}
-            </p>
-          </div>
-        </div>
+          ) : null}
+        </section>
       </section>
     </aside>
   )

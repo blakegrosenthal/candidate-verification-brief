@@ -17,8 +17,28 @@ import {
   nextStepTone,
   riskTone,
   signalTone,
+  type BadgeTone,
 } from './badgeStyles'
 import type { Candidate } from '../types'
+
+type CriteriaStatus =
+  | 'Supported'
+  | 'Partially supported'
+  | 'Needs clarification'
+  | 'Weak evidence'
+  | 'Not shown'
+
+type RoleCriteriaItem = {
+  criterion: string
+  status: CriteriaStatus
+}
+
+type SourceEvidenceItem = {
+  source: string
+  claimLabel: string
+  claim: string
+  clarification: string
+}
 
 function firstSentences(text: string, count = 1) {
   const sentences = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) ?? [text]
@@ -51,6 +71,151 @@ function recruiterTakeaway(candidate: Candidate) {
   }
 
   return 'Use the first screen to confirm the strongest evidence and calibrate role alignment.'
+}
+
+function openEvidenceGaps(candidate: Candidate) {
+  if (candidate.id === 'ethan-brooks') {
+    return [
+      'Personal ownership of $1.8M ARR is unclear.',
+      'Outbound strategy leadership needs specifics.',
+      'Named logo involvement is not explained.',
+      'Company-specific motivation is weak.',
+      'Salesforce or CRM depth is not clearly proven.',
+    ]
+  }
+
+  return uniqueItems([...candidate.brief.claimsToVerify, ...candidate.brief.gapsOrInconsistencies])
+    .map((item) => (item.endsWith('.') ? item : `${item}.`))
+    .slice(0, 4)
+}
+
+function roleCriteriaCheck(candidate: Candidate): RoleCriteriaItem[] {
+  if (candidate.id === 'ethan-brooks') {
+    return [
+      { criterion: 'Quota ownership', status: 'Needs clarification' },
+      { criterion: 'B2B SaaS sales experience', status: 'Supported' },
+      { criterion: 'Outbound prospecting', status: 'Partially supported' },
+      { criterion: 'Enterprise or mid-market deal experience', status: 'Needs clarification' },
+      { criterion: 'CRM usage', status: 'Partially supported' },
+      { criterion: 'Company-specific interest', status: 'Weak evidence' },
+    ]
+  }
+
+  if (candidate.id === 'maya-patel') {
+    return [
+      { criterion: 'Quota ownership', status: 'Supported' },
+      { criterion: 'B2B SaaS sales experience', status: 'Supported' },
+      { criterion: 'Outbound prospecting', status: 'Supported' },
+      { criterion: 'Enterprise or mid-market deal experience', status: 'Partially supported' },
+      { criterion: 'CRM usage', status: 'Supported' },
+      { criterion: 'Company-specific interest', status: 'Supported' },
+    ]
+  }
+
+  if (candidate.fitSignal === 'High' && candidate.verificationRisk === 'High') {
+    return [
+      { criterion: 'Quota ownership', status: 'Needs clarification' },
+      { criterion: 'B2B sales experience', status: 'Supported' },
+      { criterion: 'Outbound prospecting', status: 'Partially supported' },
+      { criterion: 'Deal experience', status: 'Needs clarification' },
+      { criterion: 'CRM usage', status: 'Partially supported' },
+      { criterion: 'Company-specific interest', status: 'Weak evidence' },
+    ]
+  }
+
+  if (candidate.evidenceStrength === 'Strong') {
+    return [
+      { criterion: 'Relevant sales experience', status: 'Supported' },
+      { criterion: 'Outbound prospecting', status: 'Supported' },
+      { criterion: 'Role-specific motivation', status: 'Supported' },
+      { criterion: 'Quota or pipeline evidence', status: 'Partially supported' },
+      { criterion: 'CRM usage', status: 'Partially supported' },
+    ]
+  }
+
+  return [
+    { criterion: 'Relevant sales experience', status: 'Partially supported' },
+    { criterion: 'Outbound prospecting', status: 'Needs clarification' },
+    { criterion: 'Quota or pipeline evidence', status: 'Needs clarification' },
+    { criterion: 'CRM usage', status: 'Partially supported' },
+    { criterion: 'Company-specific interest', status: 'Weak evidence' },
+  ]
+}
+
+function sourceEvidence(candidate: Candidate): SourceEvidenceItem[] {
+  if (candidate.id === 'ethan-brooks') {
+    return [
+      {
+        source: 'Resume highlight',
+        claimLabel: 'Candidate claim',
+        claim: 'Claims 148% quota attainment and $1.8M new ARR closed',
+        clarification:
+          'Personal ownership is unclear. The application does not show whether this was personally sourced, team-sourced, renewed, or influenced.',
+      },
+      {
+        source: 'Application answer',
+        claimLabel: 'Candidate answer',
+        claim: candidate.applicationAnswer,
+        clarification: 'The answer is polished but not company-specific.',
+      },
+      {
+        source: 'Resume highlight',
+        claimLabel: 'Candidate claim',
+        claim: 'Mentions leading outbound strategy for a 12-person pod',
+        clarification:
+          'The decisions owned, changes made, and metric impact are not yet supported.',
+      },
+    ]
+  }
+
+  const salesResult = candidate.screeningResponses.salesResult
+  const companyInterest = candidate.screeningResponses.companyInterest
+
+  return [
+    {
+      source: 'Resume highlight',
+      claimLabel: 'Candidate claim',
+      claim: candidate.resumeHighlights[0] ?? candidate.background,
+      clarification: candidate.brief.claimsToVerify[0] ?? candidate.brief.concernToTest,
+    },
+    {
+      source: 'Screening response',
+      claimLabel: 'Candidate answer',
+      claim: salesResult,
+      clarification: candidate.brief.claimsToVerify[1] ?? candidate.brief.concernToTest,
+    },
+    {
+      source: 'Company interest answer',
+      claimLabel: 'Candidate answer',
+      claim: companyInterest,
+      clarification:
+        candidate.brief.genericAnswerNotes[0] ??
+        'Clarify whether the motivation is specific to this company and role.',
+    },
+  ].slice(0, 3)
+}
+
+function possibleHandoff(candidate: Candidate) {
+  if (candidate.id === 'ethan-brooks') {
+    return [
+      'If $1.8M ARR ownership is not clarified, ask the hiring manager to request one specific deal walkthrough.',
+      'If outbound strategy leadership is unclear, ask what decisions he personally owned and what changed in the metrics.',
+      'If company interest stays generic, ask why this role and company specifically.',
+      'If named logos remain unclear, ask what role he played in those deals.',
+    ]
+  }
+
+  return candidate.brief.claimsToVerify
+    .slice(0, 3)
+    .map((claim) => `If unresolved, hand off this question for deeper review: ${claim}`)
+}
+
+function criteriaTone(status: CriteriaStatus): BadgeTone {
+  if (status === 'Supported') return 'green'
+  if (status === 'Partially supported') return 'blue'
+  if (status === 'Needs clarification') return 'amber'
+  if (status === 'Weak evidence') return 'red'
+  return 'slate'
 }
 
 function BriefBlock({
@@ -96,6 +261,50 @@ function NumberedQuestions({ questions }: { questions: string[] }) {
   )
 }
 
+function RoleCriteriaCheck({ items }: { items: RoleCriteriaItem[] }) {
+  return (
+    <div className="grid gap-2">
+      {items.map((item) => (
+        <div
+          key={item.criterion}
+          className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate-200 bg-slate-50 px-3 py-2"
+        >
+          <span className="text-sm font-medium text-slate-700">{item.criterion}</span>
+          <Badge tone={criteriaTone(item.status)}>{item.status}</Badge>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function SourceEvidenceList({ items }: { items: SourceEvidenceItem[] }) {
+  return (
+    <div className="grid gap-2">
+      {items.map((item) => (
+        <div
+          key={`${item.source}-${item.claim}`}
+          className="rounded-md border border-slate-200 bg-slate-50 p-3 text-sm leading-6"
+        >
+          <p className="text-slate-600">
+            <span className="font-semibold text-slate-800">Source: </span>
+            {item.source}
+          </p>
+          <p className="mt-1 text-slate-600">
+            <span className="font-semibold text-slate-800">{item.claimLabel}: </span>
+            &quot;{item.claim}&quot;
+          </p>
+          <p className="mt-1 text-slate-600">
+            <span className="font-semibold text-slate-800">
+              Why it needs clarification:{' '}
+            </span>
+            {item.clarification}
+          </p>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
   const [isMoreDetailOpen, setIsMoreDetailOpen] = useState(false)
 
@@ -125,6 +334,10 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
     return {
       overallRead: firstSentences(candidate.brief.overallRead, 2),
       takeaway: recruiterTakeaway(candidate),
+      openEvidenceGaps: openEvidenceGaps(candidate),
+      roleCriteriaCheck: roleCriteriaCheck(candidate),
+      sourceEvidence: sourceEvidence(candidate),
+      possibleHandoff: possibleHandoff(candidate),
       whyFlagged,
       claimsToVerify: candidate.brief.claimsToVerify.slice(0, 3),
       questions: candidate.brief.firstScreenQuestions.slice(0, 3),
@@ -174,20 +387,24 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
           <p className="mt-2 text-sm leading-6 text-sky-900">{compactBrief.takeaway}</p>
         </section>
 
-        <BriefBlock title="Overall read">
-          <p className="text-sm leading-6 text-slate-650">{compactBrief.overallRead}</p>
+        <BriefBlock title="Open evidence gaps">
+          <BulletList items={compactBrief.openEvidenceGaps} />
         </BriefBlock>
 
-        <BriefBlock title="Why flagged">
-          <BulletList items={compactBrief.whyFlagged} />
+        <BriefBlock title="First-screen questions">
+          <NumberedQuestions questions={compactBrief.questions} />
+        </BriefBlock>
+
+        <BriefBlock title="Role criteria check">
+          <RoleCriteriaCheck items={compactBrief.roleCriteriaCheck} />
         </BriefBlock>
 
         <BriefBlock title="Top claims to verify">
           <BulletList items={compactBrief.claimsToVerify} />
         </BriefBlock>
 
-        <BriefBlock title="First-screen questions">
-          <NumberedQuestions questions={compactBrief.questions} />
+        <BriefBlock title="Source evidence for flags">
+          <SourceEvidenceList items={compactBrief.sourceEvidence} />
         </BriefBlock>
 
         <BriefBlock title="Suggested first-screen focus">
@@ -210,6 +427,40 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
 
           {isMoreDetailOpen ? (
             <div className="grid gap-4 border-t border-slate-200 bg-white p-4">
+              <div className="grid gap-4 xl:grid-cols-2">
+                <section>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                    <Target size={16} className="text-slate-500" />
+                    Overall read
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-slate-650">
+                    {compactBrief.overallRead}
+                  </p>
+                </section>
+                <section>
+                  <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                    <AlertTriangle size={16} className="text-amber-600" />
+                    Why flagged
+                  </div>
+                  <div className="mt-2">
+                    <BulletList items={compactBrief.whyFlagged} />
+                  </div>
+                </section>
+              </div>
+
+              <section>
+                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
+                  <ClipboardCheck size={16} className="text-sky-700" />
+                  Possible handoff if unresolved
+                </div>
+                <p className="mt-2 text-sm leading-6 text-slate-500">
+                  Use these only if the first screen does not resolve the gap.
+                </p>
+                <div className="mt-2">
+                  <BulletList items={compactBrief.possibleHandoff} />
+                </div>
+              </section>
+
               <div className="grid gap-4 xl:grid-cols-2">
                 <section>
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">

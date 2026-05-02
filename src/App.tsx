@@ -102,6 +102,13 @@ function App() {
                 See what to trust, what to question, and what to verify before the first
                 interview.
               </p>
+              <p className="mt-2 max-w-3xl text-base font-semibold leading-6 text-slate-800">
+                Recruiter prep brief for the first screen.
+              </p>
+              <p className="mt-1 max-w-4xl text-sm leading-6 text-slate-600">
+                Built for recruiter first-screen prep. Turn polished applications into focused
+                questions before the call.
+              </p>
               <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-500">
                 This tool does not replace recruiter judgment. It helps recruiters prepare better
                 first screens by surfacing claims to verify, weak evidence, generic answers, and

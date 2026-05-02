@@ -2,8 +2,8 @@ export type Signal = 'High' | 'Medium' | 'Low'
 export type EvidenceStrength = 'Strong' | 'Mixed' | 'Weak'
 export type InstructionFollowing = 'Complete' | 'Partial' | 'Issue'
 export type SuggestedNextStep =
-  | 'Ready for targeted screen'
-  | 'Verification priority'
+  | 'Low clarification need'
+  | 'Claims need clarification'
   | 'Manual review'
   | 'Role-alignment review'
 

@@ -99,8 +99,7 @@ function App() {
                 </div>
               </div>
               <p className="mt-4 max-w-3xl text-lg leading-7 text-slate-700">
-                See what to trust, what to question, and what to verify before the first
-                interview.
+                See what to trust, what to question, and what to clarify in the first screen.
               </p>
               <p className="mt-2 max-w-3xl text-base font-semibold leading-6 text-slate-800">
                 Recruiter prep brief for the first screen.
@@ -111,12 +110,12 @@ function App() {
               </p>
               <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-500">
                 This tool does not replace recruiter judgment. It helps recruiters prepare better
-                first screens by surfacing claims to verify, weak evidence, generic answers, and
+                first screens by surfacing claims to clarify, weak evidence, generic answers, and
                 instruction-following issues.
               </p>
               <p className="mt-3 inline-flex rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm leading-5 text-slate-600">
-                Verification risk does not mean fraud. It means key claims need confirmation before
-                the recruiter trusts them.
+                Verification concern does not mean fraud. It means key claims need clarification
+                before the recruiter relies on them.
               </p>
             </div>
             <div className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600 lg:max-w-sm">
@@ -136,13 +135,13 @@ function App() {
           <DashboardCard
             label="Briefs ready for review"
             value={metrics.briefsReady}
-            detail="Verification notes generated"
+            detail="Prep notes generated"
             icon={ClipboardList}
           />
           <DashboardCard
             label="High verification concern"
             value={metrics.highRisk}
-            detail="Claims needing verification"
+            detail="Claims needing clarification"
             icon={ShieldQuestion}
           />
           <DashboardCard

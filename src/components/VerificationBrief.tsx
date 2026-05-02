@@ -31,6 +31,7 @@ type CriteriaStatus =
 type RoleCriteriaItem = {
   criterion: string
   status: CriteriaStatus
+  evidenceNote: string
 }
 
 type SourceEvidenceItem = {
@@ -51,7 +52,7 @@ function uniqueItems(items: string[]) {
 
 function recruiterTakeaway(candidate: Candidate) {
   if (candidate.id === 'maya-patel') {
-    return 'Candidate appears aligned, but the first screen should verify quota ownership, deal size, sales cycle, and Salesforce depth.'
+    return 'Candidate appears aligned, but the first screen should clarify quota ownership, deal size, sales cycle, and Salesforce depth.'
   }
 
   if (candidate.id === 'ethan-brooks') {
@@ -67,7 +68,7 @@ function recruiterTakeaway(candidate: Candidate) {
   }
 
   if (candidate.verificationRisk === 'Medium') {
-    return 'Use the first screen to clarify the main gap before trusting the strongest claims.'
+    return 'Use the first screen to clarify the main gap before relying on the strongest claims.'
   }
 
   return 'Use the first screen to confirm the strongest evidence and calibrate role alignment.'
@@ -92,53 +93,169 @@ function openEvidenceGaps(candidate: Candidate) {
 function roleCriteriaCheck(candidate: Candidate): RoleCriteriaItem[] {
   if (candidate.id === 'ethan-brooks') {
     return [
-      { criterion: 'Quota ownership', status: 'Needs clarification' },
-      { criterion: 'B2B SaaS sales experience', status: 'Supported' },
-      { criterion: 'Outbound prospecting', status: 'Partially supported' },
-      { criterion: 'Enterprise or mid-market deal experience', status: 'Needs clarification' },
-      { criterion: 'CRM usage', status: 'Partially supported' },
-      { criterion: 'Company-specific interest', status: 'Weak evidence' },
+      {
+        criterion: 'Quota ownership',
+        status: 'Needs clarification',
+        evidenceNote: 'Revenue claim is large, but personal ownership is unclear.',
+      },
+      {
+        criterion: 'B2B SaaS sales experience',
+        status: 'Supported',
+        evidenceNote:
+          'Current Senior Account Executive role suggests relevant SaaS sales experience.',
+      },
+      {
+        criterion: 'Outbound prospecting',
+        status: 'Partially supported',
+        evidenceNote:
+          'Resume mentions outbound strategy, but the exact actions and results are not shown.',
+      },
+      {
+        criterion: 'Enterprise or mid-market deal experience',
+        status: 'Needs clarification',
+        evidenceNote:
+          'Named logos are listed, but his role, deal size, and sales cycle are not explained.',
+      },
+      {
+        criterion: 'CRM usage',
+        status: 'Partially supported',
+        evidenceNote: 'CRM experience is mentioned, but depth of ownership is not clearly shown.',
+      },
+      {
+        criterion: 'Company-specific interest',
+        status: 'Weak evidence',
+        evidenceNote:
+          'Application answer sounds polished but could apply to almost any growth company.',
+      },
     ]
   }
 
   if (candidate.id === 'maya-patel') {
     return [
-      { criterion: 'Quota ownership', status: 'Supported' },
-      { criterion: 'B2B SaaS sales experience', status: 'Supported' },
-      { criterion: 'Outbound prospecting', status: 'Supported' },
-      { criterion: 'Enterprise or mid-market deal experience', status: 'Partially supported' },
-      { criterion: 'CRM usage', status: 'Supported' },
-      { criterion: 'Company-specific interest', status: 'Supported' },
+      {
+        criterion: 'Quota ownership',
+        status: 'Supported',
+        evidenceNote: 'Quota, target, and sourced pipeline share are stated directly.',
+      },
+      {
+        criterion: 'B2B SaaS sales experience',
+        status: 'Supported',
+        evidenceNote: 'Current AE work maps closely to the role category.',
+      },
+      {
+        criterion: 'Outbound prospecting',
+        status: 'Supported',
+        evidenceNote: 'Application includes a specific outbound-sourced account example.',
+      },
+      {
+        criterion: 'Enterprise or mid-market deal experience',
+        status: 'Partially supported',
+        evidenceNote: 'Mid-market exposure is likely, but average deal size still needs detail.',
+      },
+      {
+        criterion: 'CRM usage',
+        status: 'Supported',
+        evidenceNote: 'Salesforce is tied to forecasting and stage hygiene.',
+      },
+      {
+        criterion: 'Company-specific interest',
+        status: 'Supported',
+        evidenceNote: 'Motivation references relevant buyers and workplace programs.',
+      },
     ]
   }
 
   if (candidate.fitSignal === 'High' && candidate.verificationRisk === 'High') {
     return [
-      { criterion: 'Quota ownership', status: 'Needs clarification' },
-      { criterion: 'B2B sales experience', status: 'Supported' },
-      { criterion: 'Outbound prospecting', status: 'Partially supported' },
-      { criterion: 'Deal experience', status: 'Needs clarification' },
-      { criterion: 'CRM usage', status: 'Partially supported' },
-      { criterion: 'Company-specific interest', status: 'Weak evidence' },
+      {
+        criterion: 'Quota ownership',
+        status: 'Needs clarification',
+        evidenceNote: 'Outcome claims need more personal ownership detail.',
+      },
+      {
+        criterion: 'B2B sales experience',
+        status: 'Supported',
+        evidenceNote: 'Recent role history appears relevant.',
+      },
+      {
+        criterion: 'Outbound prospecting',
+        status: 'Partially supported',
+        evidenceNote: 'Outbound is mentioned, but source and actions need detail.',
+      },
+      {
+        criterion: 'Deal experience',
+        status: 'Needs clarification',
+        evidenceNote: 'Deal size, cycle, and exact role are not yet clear.',
+      },
+      {
+        criterion: 'CRM usage',
+        status: 'Partially supported',
+        evidenceNote: 'Tools are listed, but depth of use needs a first-screen check.',
+      },
+      {
+        criterion: 'Company-specific interest',
+        status: 'Weak evidence',
+        evidenceNote: 'Motivation is broad or lightly tied to this role.',
+      },
     ]
   }
 
   if (candidate.evidenceStrength === 'Strong') {
     return [
-      { criterion: 'Relevant sales experience', status: 'Supported' },
-      { criterion: 'Outbound prospecting', status: 'Supported' },
-      { criterion: 'Role-specific motivation', status: 'Supported' },
-      { criterion: 'Quota or pipeline evidence', status: 'Partially supported' },
-      { criterion: 'CRM usage', status: 'Partially supported' },
+      {
+        criterion: 'Relevant sales experience',
+        status: 'Supported',
+        evidenceNote: 'Application includes role-relevant sales context.',
+      },
+      {
+        criterion: 'Outbound prospecting',
+        status: 'Supported',
+        evidenceNote: 'Prospecting examples include concrete activity or outcomes.',
+      },
+      {
+        criterion: 'Role-specific motivation',
+        status: 'Supported',
+        evidenceNote: 'Interest is tied to the role or buyer context.',
+      },
+      {
+        criterion: 'Quota or pipeline evidence',
+        status: 'Partially supported',
+        evidenceNote: 'Metrics are present, but ownership may need a quick check.',
+      },
+      {
+        criterion: 'CRM usage',
+        status: 'Partially supported',
+        evidenceNote: 'Tool experience appears relevant but may need depth clarified.',
+      },
     ]
   }
 
   return [
-    { criterion: 'Relevant sales experience', status: 'Partially supported' },
-    { criterion: 'Outbound prospecting', status: 'Needs clarification' },
-    { criterion: 'Quota or pipeline evidence', status: 'Needs clarification' },
-    { criterion: 'CRM usage', status: 'Partially supported' },
-    { criterion: 'Company-specific interest', status: 'Weak evidence' },
+    {
+      criterion: 'Relevant sales experience',
+      status: 'Partially supported',
+      evidenceNote: 'Some sales context is present, but role match needs detail.',
+    },
+    {
+      criterion: 'Outbound prospecting',
+      status: 'Needs clarification',
+      evidenceNote: 'Outbound ownership is not clearly shown.',
+    },
+    {
+      criterion: 'Quota or pipeline evidence',
+      status: 'Needs clarification',
+      evidenceNote: 'Metrics or personal contribution are light.',
+    },
+    {
+      criterion: 'CRM usage',
+      status: 'Partially supported',
+      evidenceNote: 'Tool use is mentioned but not deeply supported.',
+    },
+    {
+      criterion: 'Company-specific interest',
+      status: 'Weak evidence',
+      evidenceNote: 'Motivation is generic or only lightly connected to the role.',
+    },
   ]
 }
 
@@ -267,10 +384,15 @@ function RoleCriteriaCheck({ items }: { items: RoleCriteriaItem[] }) {
       {items.map((item) => (
         <div
           key={item.criterion}
-          className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-slate-200 bg-slate-50 px-3 py-2"
+          className="flex items-start justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 px-3 py-2"
         >
-          <span className="text-sm font-medium text-slate-700">{item.criterion}</span>
-          <Badge tone={criteriaTone(item.status)}>{item.status}</Badge>
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-slate-700">{item.criterion}</p>
+            <p className="mt-0.5 text-xs leading-5 text-slate-500">{item.evidenceNote}</p>
+          </div>
+          <Badge tone={criteriaTone(item.status)} className="shrink-0">
+            {item.status}
+          </Badge>
         </div>
       ))}
     </div>
@@ -321,7 +443,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
 
     const genericFlag =
       candidate.genericAnswerRisk !== 'Low'
-        ? `Generic answers: ${candidate.genericAnswerRisk.toLowerCase()} risk.`
+        ? `Generic answers: ${candidate.genericAnswerRisk.toLowerCase()} concern.`
         : ''
 
     const whyFlagged = uniqueItems([
@@ -399,11 +521,11 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
           <RoleCriteriaCheck items={compactBrief.roleCriteriaCheck} />
         </BriefBlock>
 
-        <BriefBlock title="Top claims to verify">
+        <BriefBlock title="Top claims to clarify">
           <BulletList items={compactBrief.claimsToVerify} />
         </BriefBlock>
 
-        <BriefBlock title="Source evidence for flags">
+        <BriefBlock title="Evidence behind the flags">
           <SourceEvidenceList items={compactBrief.sourceEvidence} />
         </BriefBlock>
 

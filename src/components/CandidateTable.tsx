@@ -37,7 +37,7 @@ export function CandidateTable({
           <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs leading-5 text-slate-500">
             <span>
               <span className="font-semibold text-slate-700">Verification concern:</span> candidate
-              may look qualified, but key claims need confirmation.
+              may look qualified, but key claims need clarification.
             </span>
             <span>
               <span className="font-semibold text-slate-700">Evidence strength:</span> shows how
@@ -56,7 +56,7 @@ export function CandidateTable({
               <th className="w-[24%] px-4 py-3 font-semibold">Candidate</th>
               <th className="w-[22%] px-3 py-3 font-semibold">Current / recent role</th>
               <th className="w-[11%] px-3 py-3 font-semibold">Role alignment</th>
-              <th className="w-[14%] px-3 py-3 font-semibold">Claims to verify</th>
+              <th className="w-[14%] px-3 py-3 font-semibold">Claims to clarify</th>
               <th className="w-[14%] px-3 py-3 font-semibold">Evidence strength</th>
               <th className="w-[15%] px-4 py-3 font-semibold">Suggested screen focus</th>
             </tr>

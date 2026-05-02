@@ -59,7 +59,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Ready for targeted screen',
+    suggestedNextStep: 'Low clarification need',
     brief: {
       overallRead:
         'Strong, relevant AE profile with specific workplace services context and clear personal ownership of outbound and quota results.',
@@ -142,10 +142,10 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Verification priority',
+    suggestedNextStep: 'Claims need clarification',
     brief: {
       overallRead:
-        'Potentially strong sales profile, but the application is polished and light on verifiable detail. High fit should be separated from high verification risk.',
+        'Potentially strong sales profile, but the application is polished and light on verifiable detail. Role alignment should stay separate from verification concern.',
       credible: [
         'Has multiple years in B2B SaaS AE roles.',
         'Compensation expectations are close to the stated band.',
@@ -196,7 +196,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The underlying AE background may be very relevant if the claimed ownership checks out quickly.',
       suggestedNextStep:
-        'Run a short verification-focused screen before investing in a later-stage process.',
+        'Use the first screen to clarify ARR ownership, outbound strategy, named-logo role, and CRM depth.',
     },
   },
   {
@@ -226,7 +226,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Verification priority',
+    suggestedNextStep: 'Claims need clarification',
     brief: {
       overallRead:
         'Strong credibility and relevant outbound evidence, with the main question being readiness for full-cycle AE responsibility.',
@@ -279,7 +279,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her outbound evidence is unusually concrete and aligned with a high-volume commercial motion.',
       suggestedNextStep:
-        'Verification priority for AE readiness and closing exposure.',
+        'Clarify AE readiness and closing exposure in the first screen.',
     },
   },
   {
@@ -363,7 +363,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The role history is relevant enough to merit manual review if the recruiter needs more AE options.',
       suggestedNextStep:
-        'Manual review; use a short verification call to resolve evidence gaps if needed.',
+        'Manual review; use a short clarification call to resolve evidence gaps if needed.',
     },
   },
   {
@@ -477,7 +477,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Medium',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Verification priority',
+    suggestedNextStep: 'Claims need clarification',
     brief: {
       overallRead:
         'Potentially valuable outbound operator, but the brief should test whether his leadership claims translate into personal AE selling.',
@@ -531,7 +531,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'If he is comfortable returning to individual contribution, the outbound systems experience may be useful.',
       suggestedNextStep:
-        'Verification priority focused on personal quota ownership and appetite for hands-on selling.',
+        'Clarify personal quota ownership and appetite for hands-on selling.',
     },
   },
   {
@@ -561,7 +561,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Verification priority',
+    suggestedNextStep: 'Claims need clarification',
     brief: {
       overallRead:
         'Credible commercial seller with strong account expansion evidence, but the key gap is net-new outbound and closing from cold prospecting.',
@@ -615,7 +615,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her credibility is strong, and the buyer/domain overlap may shorten ramp time.',
       suggestedNextStep:
-        'Verification priority to test outbound readiness and new-business motivation.',
+        'Clarify outbound readiness and new-business motivation.',
     },
   },
   {
@@ -813,10 +813,10 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Verification priority',
+    suggestedNextStep: 'Claims need clarification',
     brief: {
       overallRead:
-        'Good buyer and domain relevance, with verification needed around CRM maturity, quota ownership, and whether expansion work maps to new-business AE selling.',
+        'Good buyer and domain relevance, with clarification needed around CRM maturity, quota ownership, and whether expansion work maps to new-business AE selling.',
       credible: [
         'Direct experience selling office food and employee perk services.',
         'Application answer shows practical understanding of office-manager and budget-owner dynamics.',
@@ -867,7 +867,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Buyer relevance is strong, and the answers suggest practical selling judgment.',
       suggestedNextStep:
-        'Verification priority to verify CRM discipline, quota ownership, and source of pipeline.',
+        'Clarify CRM discipline, quota ownership, and source of pipeline.',
     },
   },
   {
@@ -897,7 +897,7 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Medium',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Ready for targeted screen',
+    suggestedNextStep: 'Low clarification need',
     brief: {
       overallRead:
         'Likely relevant AE with strong domain overlap, but the screen should isolate her individual contribution from regional or cross-functional results.',
@@ -1043,7 +1043,7 @@ export const candidates: Candidate[] = [
     name: 'Samir Das',
     currentRole: 'Account Executive, TeamTable',
     background:
-      'Highly relevant office meal program AE with good specifics, but needs verification on whether results were personally sourced or marketing-generated.',
+      'Highly relevant office meal program AE with good specifics, but needs clarification on whether results were personally sourced or marketing-generated.',
     resumeHighlights: [
       'Sold employee meal and catering platform to companies with 200-1,500 employees',
       'Closed $640k ARR in 2025 against $600k quota',
@@ -1065,10 +1065,10 @@ export const candidates: Candidate[] = [
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Ready for targeted screen',
+    suggestedNextStep: 'Low clarification need',
     brief: {
       overallRead:
-        'Very strong role and buyer match with specific quota and deal evidence. Main verification point is source quality and personal ownership.',
+        'Very strong role and buyer match with specific quota and deal evidence. Main clarification point is source quality and personal ownership.',
       credible: [
         'Directly relevant employee meal and office buyer experience.',
         'Quota, ARR closed, and named prospecting tools are specific.',
@@ -1105,7 +1105,7 @@ export const candidates: Candidate[] = [
           instruction: 'Give one concrete sales result you personally contributed to',
           candidateAnswer: '$118k ARR tech account sourced through webinar follow-up.',
           flag: 'Complete',
-          note: 'Concrete with personal ownership to verify.',
+          note: 'Concrete with personal ownership to clarify.',
         },
       ],
       firstScreenQuestions: [
@@ -1118,7 +1118,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The role, buyer, and deal evidence are tightly aligned with the opening.',
       suggestedNextStep:
-        'Use a targeted screen; verify source mix and deal-cycle depth in the first screen.',
+        'Use the first screen to clarify source mix and deal-cycle depth.',
     },
   },
   {
@@ -1151,7 +1151,7 @@ export const candidates: Candidate[] = [
     suggestedNextStep: 'Manual review',
     brief: {
       overallRead:
-        'Credible buyer expert with strong consultative examples, but the recruiter should verify fit for a quota-carrying AE role and structured sales environment.',
+        'Credible buyer expert with strong consultative examples, but the recruiter should clarify fit for a quota-carrying AE role and structured sales environment.',
       credible: [
         'Specific workplace experience and office-services buyer exposure.',
         'Clear consulting win with client size, savings, and retention.',

@@ -91,15 +91,16 @@ function App() {
                 </span>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                    Recruiter prep layer
+                    RECRUITER PREP LAYER
                   </p>
                   <h1 className="mt-1 text-3xl font-semibold tracking-normal text-slate-950">
-                    Candidate Verification Brief
+                    First-Screen Prep Brief
                   </h1>
                 </div>
               </div>
               <p className="mt-4 max-w-3xl text-lg leading-7 text-slate-700">
-                See what to trust, what to question, and what to clarify in the first screen.
+                See what looks supported, what needs clarification, and what to ask in the first
+                screen.
               </p>
               <p className="mt-2 max-w-3xl text-base font-semibold leading-6 text-slate-800">
                 Recruiter prep brief for the first screen.

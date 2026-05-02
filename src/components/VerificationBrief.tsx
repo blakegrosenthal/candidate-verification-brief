@@ -481,7 +481,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">
-              Selected Candidate Verification Brief
+              Selected First-Screen Prep Brief
             </p>
             <h2 className="mt-1 text-2xl font-semibold text-slate-950">{candidate.name}</h2>
             <p className="mt-1 text-sm text-slate-500">{candidate.currentRole}</p>

@@ -3,14 +3,14 @@ import {
   ClipboardList,
   FileWarning,
   SearchCheck,
-  ShieldQuestion,
+  MessageSquareText,
   Users,
 } from 'lucide-react'
 import { CandidateTable } from './components/CandidateTable'
 import { DashboardCard } from './components/DashboardCard'
 import { Filters, type FilterState } from './components/Filters'
 import { RoleCriteriaPanel } from './components/RoleCriteriaPanel'
-import { VerificationBrief } from './components/VerificationBrief'
+import { PrepBrief } from './components/PrepBrief'
 import { candidates } from './data/candidates'
 import type { Candidate } from './types'
 
@@ -19,7 +19,7 @@ function App() {
   const [search, setSearch] = useState('')
   const [filters, setFilters] = useState<FilterState>({
     fitSignal: 'All',
-    verificationRisk: 'All',
+    clarificationNeed: 'All',
     genericAnswerRisk: 'All',
     instructionFollowing: 'All',
   })
@@ -30,8 +30,8 @@ function App() {
     return candidates.filter((candidate) => {
       const matchesFilters =
         (filters.fitSignal === 'All' || candidate.fitSignal === filters.fitSignal) &&
-        (filters.verificationRisk === 'All' ||
-          candidate.verificationRisk === filters.verificationRisk) &&
+        (filters.clarificationNeed === 'All' ||
+          candidate.clarificationNeed === filters.clarificationNeed) &&
         (filters.genericAnswerRisk === 'All' ||
           candidate.genericAnswerRisk === filters.genericAnswerRisk) &&
         (filters.instructionFollowing === 'All' ||
@@ -64,7 +64,8 @@ function App() {
     return {
       total: candidates.length,
       briefsReady: candidates.length,
-      highRisk: candidates.filter((candidate) => candidate.verificationRisk === 'High').length,
+      claimsToClarify: candidates.filter((candidate) => candidate.clarificationNeed === 'High')
+        .length,
       instructionIssues: candidates.filter((candidate) =>
         ['Partial', 'Issue'].includes(candidate.instructionFollowing),
       ).length,
@@ -91,7 +92,7 @@ function App() {
                 </span>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                    RECRUITER PREP LAYER
+                    RECRUITER PREP
                   </p>
                   <h1 className="mt-1 text-3xl font-semibold tracking-normal text-slate-950">
                     First-Screen Prep Brief
@@ -102,21 +103,13 @@ function App() {
                 See what looks supported, what needs clarification, and what to ask in the first
                 screen.
               </p>
-              <p className="mt-2 max-w-3xl text-base font-semibold leading-6 text-slate-800">
-                Recruiter prep brief for the first screen.
+              <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-600">
+                Built for first-screen prep. Turns polished applications into focused questions
+                before the call without ranking, scoring, or replacing recruiter judgment.
               </p>
-              <p className="mt-1 max-w-4xl text-sm leading-6 text-slate-600">
-                Built for recruiter first-screen prep. Turn polished applications into focused
-                questions before the call.
-              </p>
-              <p className="mt-2 max-w-4xl text-sm leading-6 text-slate-500">
-                This tool does not replace recruiter judgment. It helps recruiters prepare better
-                first screens by surfacing claims to clarify, weak evidence, generic answers, and
-                instruction-following issues.
-              </p>
-              <p className="mt-3 inline-flex rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm leading-5 text-slate-600">
-                Verification concern does not mean fraud. It means key claims need clarification
-                before the recruiter relies on them.
+              <p className="mt-1 max-w-4xl text-sm leading-6 text-slate-500">
+                Notes in this brief are starting points for the first screen, not conclusions about
+                the candidate.
               </p>
             </div>
             <div className="rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm leading-6 text-slate-600 lg:max-w-sm">
@@ -140,10 +133,10 @@ function App() {
             icon={ClipboardList}
           />
           <DashboardCard
-            label="High verification concern"
-            value={metrics.highRisk}
-            detail="Claims needing clarification"
-            icon={ShieldQuestion}
+            label="Claims to clarify"
+            value={metrics.claimsToClarify}
+            detail="Open clarification items"
+            icon={MessageSquareText}
           />
           <DashboardCard
             label="Missed instructions"
@@ -170,7 +163,7 @@ function App() {
             />
           </div>
           <div className="2xl:sticky 2xl:top-5 2xl:max-h-[calc(100vh-2.5rem)] 2xl:overflow-y-auto">
-            <VerificationBrief candidate={selectedCandidate} />
+            <PrepBrief candidate={selectedCandidate} />
           </div>
         </section>
       </div>

@@ -2,12 +2,17 @@ import clsx from 'clsx'
 import type { KeyboardEvent } from 'react'
 import { Badge } from './Badge'
 import {
+  clarificationNeedTone,
   evidenceTone,
-  nextStepTone,
-  riskTone,
   signalTone,
 } from './badgeStyles'
 import type { Candidate } from '../types'
+
+function clarificationCountTone(count: number) {
+  if (count >= 3) return 'violet'
+  if (count >= 2) return 'amber'
+  return 'blue'
+}
 
 export function CandidateTable({
   candidates,
@@ -31,16 +36,16 @@ export function CandidateTable({
         <div>
           <h2 className="text-lg font-semibold text-slate-950">Candidate queue</h2>
           <p className="mt-1 text-sm leading-5 text-slate-500">
-            Select a row to prepare the verification brief. Role alignment and verification concern
-            stay separate.
+            Select a row to open the prep brief. Role alignment and clarification need stay
+            separate.
           </p>
           <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-xs leading-5 text-slate-500">
             <span>
-              <span className="font-semibold text-slate-700">Verification concern:</span> candidate
+              <span className="font-semibold text-slate-700">Clarification need:</span> candidate
               may look qualified, but key claims need clarification.
             </span>
             <span>
-              <span className="font-semibold text-slate-700">Evidence strength:</span> shows how
+              <span className="font-semibold text-slate-700">Support level:</span> shows how
               well claims are supported with examples, metrics, tools, or ownership.
             </span>
           </div>
@@ -54,11 +59,11 @@ export function CandidateTable({
           <thead className="border-b border-slate-200 bg-slate-50 text-xs uppercase tracking-[0.1em] text-slate-500">
             <tr>
               <th className="w-[24%] px-4 py-3 font-semibold">Candidate</th>
-              <th className="w-[22%] px-3 py-3 font-semibold">Current / recent role</th>
-              <th className="w-[11%] px-3 py-3 font-semibold">Role alignment</th>
-              <th className="w-[14%] px-3 py-3 font-semibold">Claims to clarify</th>
-              <th className="w-[14%] px-3 py-3 font-semibold">Evidence strength</th>
-              <th className="w-[15%] px-4 py-3 font-semibold">Suggested screen focus</th>
+              <th className="w-[22%] px-3 py-3 font-semibold">Current / Recent Role</th>
+              <th className="w-[11%] px-3 py-3 font-semibold">Role Alignment</th>
+              <th className="w-[14%] px-3 py-3 font-semibold">Claims to Clarify</th>
+              <th className="w-[14%] px-3 py-3 font-semibold">Support Level</th>
+              <th className="w-[15%] px-4 py-3 font-semibold">Clarifications</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">
@@ -72,7 +77,7 @@ export function CandidateTable({
                   tabIndex={0}
                   role="button"
                   aria-selected={isSelected}
-                  aria-label={`Open verification brief for ${candidate.name}`}
+                  aria-label={`Open prep brief for ${candidate.name}`}
                   className={clsx(
                     'cursor-pointer transition hover:bg-sky-50/70 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-400',
                     isSelected && 'bg-sky-50 [box-shadow:inset_3px_0_0_#0284c7]',
@@ -96,8 +101,8 @@ export function CandidateTable({
                     <Badge tone={signalTone(candidate.fitSignal)}>{candidate.fitSignal}</Badge>
                   </td>
                   <td className="px-3 py-4 align-top">
-                    <Badge tone={riskTone(candidate.verificationRisk)}>
-                      {candidate.verificationRisk}
+                    <Badge tone={clarificationNeedTone(candidate.clarificationNeed)}>
+                      {candidate.clarificationNeed}
                     </Badge>
                   </td>
                   <td className="px-3 py-4 align-top">
@@ -106,8 +111,8 @@ export function CandidateTable({
                     </Badge>
                   </td>
                   <td className="px-4 py-4 align-top">
-                    <Badge tone={nextStepTone(candidate.suggestedNextStep)}>
-                      {candidate.suggestedNextStep}
+                    <Badge tone={clarificationCountTone(candidate.clarificationCount)}>
+                      Clarifications: {candidate.clarificationCount}
                     </Badge>
                   </td>
                 </tr>

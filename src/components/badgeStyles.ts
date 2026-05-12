@@ -2,7 +2,6 @@ import type {
   EvidenceStrength,
   InstructionFollowing,
   Signal,
-  SuggestedNextStep,
 } from '../types'
 
 export type BadgeTone = 'green' | 'amber' | 'red' | 'slate' | 'blue' | 'violet'
@@ -13,7 +12,7 @@ export function signalTone(value: Signal): BadgeTone {
   return 'slate'
 }
 
-export function riskTone(value: Signal): BadgeTone {
+export function clarificationNeedTone(value: Signal): BadgeTone {
   if (value === 'High') return 'red'
   if (value === 'Medium') return 'amber'
   return 'green'
@@ -29,11 +28,4 @@ export function instructionTone(value: InstructionFollowing): BadgeTone {
   if (value === 'Complete') return 'green'
   if (value === 'Partial') return 'amber'
   return 'red'
-}
-
-export function nextStepTone(value: SuggestedNextStep): BadgeTone {
-  if (value === 'Low clarification need') return 'blue'
-  if (value === 'Claims need clarification') return 'violet'
-  if (value === 'Manual review') return 'amber'
-  return 'slate'
 }

@@ -5,20 +5,12 @@ import {
   CheckCircle2,
   ChevronDown,
   ClipboardCheck,
-  FileQuestion,
   MessageSquareText,
   Target,
   ThumbsUp,
 } from 'lucide-react'
 import { Badge } from './Badge'
-import {
-  evidenceTone,
-  instructionTone,
-  nextStepTone,
-  riskTone,
-  signalTone,
-  type BadgeTone,
-} from './badgeStyles'
+import { evidenceTone, instructionTone, signalTone, type BadgeTone } from './badgeStyles'
 import type { Candidate } from '../types'
 
 type CriteriaStatus =
@@ -56,18 +48,18 @@ function recruiterTakeaway(candidate: Candidate) {
   }
 
   if (candidate.id === 'ethan-brooks') {
-    return 'If this candidate is screened, several claims should be pressure tested because they are vague or unsupported. Use the first call to clarify whether the experience is real, specific, and personally owned.'
+    return 'If the recruiter screens this candidate, several claims should be pressure tested because they are vague or unsupported. Use the first call to clarify whether the experience is real, specific, and personally owned.'
   }
 
   if (candidate.id === 'marcus-green') {
     return 'Strong outbound story on paper. Pressure test whether the claimed pipeline gains were personally owned and whether he wants hands-on AE work.'
   }
 
-  if (candidate.verificationRisk === 'High') {
+  if (candidate.clarificationNeed === 'High') {
     return 'Looks relevant on paper, but the first screen should pressure test vague claims, ownership, and examples.'
   }
 
-  if (candidate.verificationRisk === 'Medium') {
+  if (candidate.clarificationNeed === 'Medium') {
     return 'Use the first screen to clarify the main gap before relying on the strongest claims.'
   }
 
@@ -165,7 +157,7 @@ function roleCriteriaCheck(candidate: Candidate): RoleCriteriaItem[] {
     ]
   }
 
-  if (candidate.fitSignal === 'High' && candidate.verificationRisk === 'High') {
+  if (candidate.fitSignal === 'High' && candidate.clarificationNeed === 'High') {
     return [
       {
         criterion: 'Quota ownership',
@@ -324,7 +316,7 @@ function possibleHandoff(candidate: Candidate) {
 
   return candidate.brief.claimsToVerify
     .slice(0, 3)
-    .map((claim) => `If unresolved, hand off this question for deeper review: ${claim}`)
+    .map((claim) => `If unresolved, hand off this question for deeper discussion: ${claim}`)
 }
 
 function criteriaTone(status: CriteriaStatus): BadgeTone {
@@ -333,6 +325,12 @@ function criteriaTone(status: CriteriaStatus): BadgeTone {
   if (status === 'Needs clarification') return 'amber'
   if (status === 'Weak evidence') return 'red'
   return 'slate'
+}
+
+function clarificationCountTone(count: number): BadgeTone {
+  if (count >= 3) return 'violet'
+  if (count >= 2) return 'amber'
+  return 'blue'
 }
 
 function BriefBlock({
@@ -427,7 +425,7 @@ function SourceEvidenceList({ items }: { items: SourceEvidenceItem[] }) {
   )
 }
 
-export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
+export function PrepBrief({ candidate }: { candidate?: Candidate }) {
   const [isMoreDetailOpen, setIsMoreDetailOpen] = useState(false)
 
   useEffect(() => {
@@ -486,19 +484,16 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
             <h2 className="mt-1 text-2xl font-semibold text-slate-950">{candidate.name}</h2>
             <p className="mt-1 text-sm text-slate-500">{candidate.currentRole}</p>
           </div>
-          <Badge tone={nextStepTone(candidate.suggestedNextStep)}>
-            {candidate.suggestedNextStep}
-          </Badge>
         </div>
         <div className="mt-4 flex flex-wrap gap-2">
           <Badge tone={signalTone(candidate.fitSignal)}>
             Role alignment: {candidate.fitSignal}
           </Badge>
-          <Badge tone={riskTone(candidate.verificationRisk)}>
-            Verification concern: {candidate.verificationRisk}
+          <Badge tone={clarificationCountTone(candidate.clarificationCount)}>
+            Clarifications: {candidate.clarificationCount}
           </Badge>
           <Badge tone={evidenceTone(candidate.evidenceStrength)}>
-            Evidence: {candidate.evidenceStrength}
+            Support: {candidate.evidenceStrength}
           </Badge>
         </div>
       </section>
@@ -525,7 +520,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
           <BulletList items={compactBrief.claimsToVerify} />
         </BriefBlock>
 
-        <BriefBlock title="Evidence behind the flags">
+        <BriefBlock title="Source evidence">
           <SourceEvidenceList items={compactBrief.sourceEvidence} />
         </BriefBlock>
 
@@ -562,7 +557,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
                 <section>
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                     <AlertTriangle size={16} className="text-amber-600" />
-                    Why flagged
+                    What to dig into
                   </div>
                   <div className="mt-2">
                     <BulletList items={compactBrief.whyFlagged} />
@@ -607,7 +602,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
               <section>
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                   <MessageSquareText size={16} className="text-slate-500" />
-                  Generic answer notes
+                  Where answers stayed generic
                 </div>
                 <div className="mt-2">
                   <BulletList items={candidate.brief.genericAnswerNotes} />
@@ -617,7 +612,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
               <section>
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                   <ClipboardCheck size={16} className="text-sky-700" />
-                  Instruction following breakdown
+                  Application instructions check
                 </div>
                 <div className="mt-2 grid gap-2">
                   {candidate.brief.instructionChecks.map((check) => (
@@ -643,7 +638,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
                 <section>
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                     <AlertTriangle size={16} className="text-rose-600" />
-                    One concern to test
+                    Main point to clarify
                   </div>
                   <p className="mt-2 text-sm leading-6 text-slate-650">
                     {candidate.brief.concernToTest}
@@ -652,7 +647,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
                 <section>
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                     <ThumbsUp size={16} className="text-emerald-600" />
-                    Reason to continue review
+                    Relevant strength to keep in mind
                   </div>
                   <p className="mt-2 text-sm leading-6 text-slate-650">
                     {candidate.brief.reasonToStillInterview}
@@ -663,7 +658,7 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
               <section>
                 <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
                   <Target size={16} className="text-slate-500" />
-                  Application context
+                  From the application
                 </div>
                 <div className="mt-3 grid gap-4 xl:grid-cols-2">
                   <div>
@@ -678,16 +673,6 @@ export function VerificationBrief({ candidate }: { candidate?: Candidate }) {
                       {candidate.applicationAnswer}
                     </p>
                   </div>
-                </div>
-              </section>
-
-              <section>
-                <div className="flex items-center gap-2 text-sm font-semibold text-slate-950">
-                  <FileQuestion size={16} className="text-slate-500" />
-                  Full first-screen question set
-                </div>
-                <div className="mt-2">
-                  <NumberedQuestions questions={candidate.brief.firstScreenQuestions} />
                 </div>
               </section>
             </div>

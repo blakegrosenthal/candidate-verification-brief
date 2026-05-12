@@ -1,11 +1,6 @@
 export type Signal = 'High' | 'Medium' | 'Low'
 export type EvidenceStrength = 'Strong' | 'Mixed' | 'Weak'
 export type InstructionFollowing = 'Complete' | 'Partial' | 'Issue'
-export type SuggestedNextStep =
-  | 'Low clarification need'
-  | 'Claims need clarification'
-  | 'Manual review'
-  | 'Role-alignment review'
 
 export type InstructionCheck = {
   instruction: string
@@ -29,11 +24,11 @@ export type Candidate = {
   skills: string[]
   companies: string[]
   fitSignal: Signal
-  verificationRisk: Signal
+  clarificationNeed: Signal
   evidenceStrength: EvidenceStrength
   genericAnswerRisk: Signal
   instructionFollowing: InstructionFollowing
-  suggestedNextStep: SuggestedNextStep
+  clarificationCount: number
   brief: {
     overallRead: string
     credible: string[]

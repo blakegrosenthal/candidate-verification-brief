@@ -6,9 +6,9 @@ A standalone React + Tailwind prototype for a recruiting prep layer. The demo fo
 
 - Dashboard summary for one Commercial Account Executive role
 - Role criteria panel with must-haves, nice-to-haves, dealbreakers, location, compensation, and screening instructions
-- 12 realistic sample candidates with varied fit and verification risk patterns
+- 12 realistic sample candidates with varied role alignment and clarification needs
 - Interactive candidate table with search and filters
-- First-Screen Prep Brief detail panel with credible evidence, claims to clarify, gaps, generic answer notes, instruction following, and first-screen questions
+- First-Screen Prep Brief detail panel with credible evidence, claims to clarify, gaps, generic answer notes, application instruction checks, and first-screen questions
 
 ## Run locally
 

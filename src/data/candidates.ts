@@ -55,11 +55,11 @@ export const candidates: Candidate[] = [
     skills: ['B2B sales', 'outbound', 'Salesforce', 'quota ownership', 'mid-market'],
     companies: ['BentoBox Workplace', 'LogisticsCo'],
     fitSignal: 'High',
-    verificationRisk: 'Low',
+    clarificationNeed: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Low clarification need',
+    clarificationCount: 0,
     brief: {
       overallRead:
         'Strong, relevant AE profile with specific workplace services context and clear personal ownership of outbound and quota results.',
@@ -80,7 +80,7 @@ export const candidates: Candidate[] = [
       genericAnswerNotes: [
         'Answers are specific to the role and buyer type.',
         'Examples include numbers, stakeholders, and a personal contribution.',
-        'Low copy-paste risk because the details map to the resume and criteria.',
+        'Details map to the resume and criteria rather than sounding copy-paste.',
       ],
       instructionChecks: [
         {
@@ -138,14 +138,14 @@ export const candidates: Candidate[] = [
     skills: ['SaaS sales', 'enterprise sales', 'outbound strategy', 'Salesforce'],
     companies: ['CloudLedger', 'Acme Bank', 'Northstar Retail'],
     fitSignal: 'High',
-    verificationRisk: 'High',
+    clarificationNeed: 'High',
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Claims need clarification',
+    clarificationCount: 3,
     brief: {
       overallRead:
-        'Potentially strong sales profile, but the application is polished and light on verifiable detail. Role alignment should stay separate from verification concern.',
+        'Potentially strong sales profile, but the application is polished and light on verifiable detail. Role alignment should stay separate from clarification need.',
       credible: [
         'Has multiple years in B2B SaaS AE roles.',
         'Compensation expectations are close to the stated band.',
@@ -222,11 +222,11 @@ export const candidates: Candidate[] = [
     skills: ['outbound', 'HubSpot', 'pipeline generation', 'B2B sales', 'prospecting'],
     companies: ['ParcelPath'],
     fitSignal: 'Medium',
-    verificationRisk: 'Low',
+    clarificationNeed: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Claims need clarification',
+    clarificationCount: 2,
     brief: {
       overallRead:
         'Strong credibility and relevant outbound evidence, with the main question being readiness for full-cycle AE responsibility.',
@@ -247,7 +247,7 @@ export const candidates: Candidate[] = [
       genericAnswerNotes: [
         'Answers are grounded in her actual outbound work.',
         'Company interest is specific to role mechanics rather than broad enthusiasm.',
-        'Low generic risk because she names a plausible career transition and evidence.',
+        'Response stays specific by naming a plausible career transition and evidence.',
       ],
       instructionChecks: [
         {
@@ -305,14 +305,14 @@ export const candidates: Candidate[] = [
     skills: ['B2B sales', 'Salesforce', 'Gong', 'Sales Navigator', 'workplace software'],
     companies: ['BrightDesk'],
     fitSignal: 'High',
-    verificationRisk: 'Medium',
+    clarificationNeed: 'Medium',
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Issue',
-    suggestedNextStep: 'Manual review',
+    clarificationCount: 3,
     brief: {
       overallRead:
-        'Relevant title and category exposure, but the application does not provide enough specific evidence to trust the strongest claims without follow-up.',
+        'Relevant title and category exposure, but the application does not provide enough specific evidence to rely on the strongest claims without follow-up.',
       credible: [
         'Current AE role appears aligned with workplace software buyers.',
         'Tool list matches expected sales workflow.',
@@ -361,9 +361,9 @@ export const candidates: Candidate[] = [
       concernToTest:
         'Whether the candidate is genuinely strong or simply presenting a familiar AE profile with generic answers.',
       reasonToStillInterview:
-        'The role history is relevant enough to merit manual review if the recruiter needs more AE options.',
+        'The role history is relevant enough to keep in mind if the recruiter needs more AE options.',
       suggestedNextStep:
-        'Manual review; use a short clarification call to resolve evidence gaps if needed.',
+        'Use a short clarification call to resolve evidence gaps if needed.',
     },
   },
   {
@@ -389,11 +389,11 @@ export const candidates: Candidate[] = [
     skills: ['hospitality sales', 'B2B sales', 'office services', 'Zoho CRM', 'account expansion'],
     companies: ['CafeOps'],
     fitSignal: 'Medium',
-    verificationRisk: 'Medium',
+    clarificationNeed: 'Medium',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Manual review',
+    clarificationCount: 2,
     brief: {
       overallRead:
         'Credible workplace-services seller with useful buyer context, but the compensation expectation is far above range and CRM/SaaS fit needs testing.',
@@ -415,7 +415,7 @@ export const candidates: Candidate[] = [
       genericAnswerNotes: [
         'Answers are specific and tied to buyer experience.',
         'Sales result includes personal action and measurable outcome.',
-        'Low generic risk despite possible fit concerns.',
+        'Answers stay specific despite possible role-alignment concerns.',
       ],
       instructionChecks: [
         {
@@ -447,7 +447,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her buyer knowledge and specific sales evidence could be useful if expectations are flexible.',
       suggestedNextStep:
-        'Manual review for compensation and time-zone alignment before deeper evaluation.',
+        'Clarify compensation and time-zone alignment before deeper evaluation.',
     },
   },
   {
@@ -473,11 +473,11 @@ export const candidates: Candidate[] = [
     skills: ['outbound strategy', 'sales leadership', 'pipeline generation', 'coaching', 'Salesforce'],
     companies: ['RevPilot'],
     fitSignal: 'Medium',
-    verificationRisk: 'High',
+    clarificationNeed: 'High',
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Medium',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Claims need clarification',
+    clarificationCount: 3,
     brief: {
       overallRead:
         'Potentially valuable outbound operator, but the brief should test whether his leadership claims translate into personal AE selling.',
@@ -557,11 +557,11 @@ export const candidates: Candidate[] = [
     skills: ['account management', 'expansion', 'Salesforce', 'Gainsight', 'workplace operations'],
     companies: ['LoopSpace'],
     fitSignal: 'Medium',
-    verificationRisk: 'Low',
+    clarificationNeed: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Claims need clarification',
+    clarificationCount: 2,
     brief: {
       overallRead:
         'Credible commercial seller with strong account expansion evidence, but the key gap is net-new outbound and closing from cold prospecting.',
@@ -583,7 +583,7 @@ export const candidates: Candidate[] = [
       genericAnswerNotes: [
         'Answers are specific and candid about the desired transition.',
         'Sales result includes problem, stakeholders, action, and ARR impact.',
-        'Low generic risk because the gap is acknowledged rather than hidden.',
+        'Response stays specific because the gap is acknowledged directly.',
       ],
       instructionChecks: [
         {
@@ -641,11 +641,11 @@ export const candidates: Candidate[] = [
     skills: ['B2B sales', 'outbound calling', 'HubSpot', 'office services', 'SMB sales'],
     companies: ['MetroOffice Supply'],
     fitSignal: 'Low',
-    verificationRisk: 'Low',
+    clarificationNeed: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Manual review',
+    clarificationCount: 1,
     brief: {
       overallRead:
         'Not a perfect fit on seniority or SaaS experience, but the evidence is credible and shows relevant outbound behavior.',
@@ -667,7 +667,7 @@ export const candidates: Candidate[] = [
       genericAnswerNotes: [
         'Answers are direct, specific, and not over-polished.',
         'The candidate answers the actual questions and acknowledges limitations.',
-        'Low generic risk because examples are grounded in concrete field activity.',
+        'Examples are grounded in concrete field activity.',
       ],
       instructionChecks: [
         {
@@ -699,7 +699,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The candidate shows real outbound evidence and buyer familiarity despite a lower fit signal.',
       suggestedNextStep:
-        'Manual review for a possible high-upside screen if the team is open to nontraditional backgrounds.',
+        'Clarify whether the team is open to nontraditional backgrounds.',
     },
   },
   {
@@ -725,14 +725,14 @@ export const candidates: Candidate[] = [
     skills: ['employee engagement SaaS', 'Salesforce', 'Outreach', 'Gong', 'MEDDICC'],
     companies: ['PeoplePulse'],
     fitSignal: 'High',
-    verificationRisk: 'High',
+    clarificationNeed: 'High',
     evidenceStrength: 'Weak',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Manual review',
+    clarificationCount: 4,
     brief: {
       overallRead:
-        'Role history appears highly relevant, but the application is too generic to trust without probing specific deals and metrics.',
+        'Role history appears highly relevant, but the application is too generic to rely on without probing specific deals and metrics.',
       credible: [
         'Employee engagement SaaS is adjacent to the target buyer category.',
         'Tool stack fits a mature AE sales motion.',
@@ -783,7 +783,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The market and buyer experience could be a strong match if specifics check out quickly.',
       suggestedNextStep:
-        'Manual review; use a short screen only if the recruiter wants to validate the highly relevant background.',
+        'Use a short screen only if the recruiter wants to clarify the highly relevant background.',
     },
   },
   {
@@ -809,11 +809,11 @@ export const candidates: Candidate[] = [
     skills: ['office food services', 'B2B sales', 'prospecting', 'internal CRM', 'account expansion'],
     companies: ['SnackFleet'],
     fitSignal: 'Medium',
-    verificationRisk: 'Medium',
+    clarificationNeed: 'Medium',
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Claims need clarification',
+    clarificationCount: 2,
     brief: {
       overallRead:
         'Good buyer and domain relevance, with clarification needed around CRM maturity, quota ownership, and whether expansion work maps to new-business AE selling.',
@@ -834,7 +834,7 @@ export const candidates: Candidate[] = [
       ],
       genericAnswerNotes: [
         'Answers are specific to office food and buyer dynamics.',
-        'Low generic risk because the response includes practical selling details.',
+        'Response includes practical selling details.',
         'Result would be stronger with ACV, source, and personal ownership details.',
       ],
       instructionChecks: [
@@ -893,11 +893,11 @@ export const candidates: Candidate[] = [
     skills: ['B2B SaaS', 'facilities software', 'Salesforce', 'multi-stakeholder sales', 'outbound'],
     companies: ['WorkNest'],
     fitSignal: 'High',
-    verificationRisk: 'Medium',
+    clarificationNeed: 'Medium',
     evidenceStrength: 'Mixed',
     genericAnswerRisk: 'Medium',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Low clarification need',
+    clarificationCount: 2,
     brief: {
       overallRead:
         'Likely relevant AE with strong domain overlap, but the screen should isolate her individual contribution from regional or cross-functional results.',
@@ -951,7 +951,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'The domain, buyer, and compensation alignment are strong enough to justify a focused first screen.',
       suggestedNextStep:
-        'Use a targeted screen with a first-screen focus on personal ownership and outbound source mix.',
+        'Use the first screen to clarify personal ownership and outbound source mix.',
     },
   },
   {
@@ -977,11 +977,11 @@ export const candidates: Candidate[] = [
     skills: ['sales', 'customer follow-up', 'CRM', 'consumer sales'],
     companies: ['HomeCloud'],
     fitSignal: 'Low',
-    verificationRisk: 'Medium',
+    clarificationNeed: 'Medium',
     evidenceStrength: 'Weak',
     genericAnswerRisk: 'High',
     instructionFollowing: 'Partial',
-    suggestedNextStep: 'Role-alignment review',
+    clarificationCount: 3,
     brief: {
       overallRead:
         'Motivated sales candidate, but the application does not show the B2B outbound and quota evidence needed for this role.',
@@ -1035,7 +1035,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Could be considered only for a more junior sales track if one exists.',
       suggestedNextStep:
-        'Role-alignment review; revisit if the team opens a more junior sales track.',
+        'Clarify role alignment if the team opens a more junior sales track.',
     },
   },
   {
@@ -1061,11 +1061,11 @@ export const candidates: Candidate[] = [
     skills: ['B2B sales', 'meal programs', 'Salesforce', 'Outreach', 'People Ops buyers'],
     companies: ['TeamTable'],
     fitSignal: 'High',
-    verificationRisk: 'Low',
+    clarificationNeed: 'Low',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Low clarification need',
+    clarificationCount: 1,
     brief: {
       overallRead:
         'Very strong role and buyer match with specific quota and deal evidence. Main clarification point is source quality and personal ownership.',
@@ -1086,7 +1086,7 @@ export const candidates: Candidate[] = [
       genericAnswerNotes: [
         'Answers are specific to the buyer and product category.',
         'Concrete result directly answers the screening prompt.',
-        'Low generic risk.',
+        'Answers are specific enough for a targeted first-screen check.',
       ],
       instructionChecks: [
         {
@@ -1144,11 +1144,11 @@ export const candidates: Candidate[] = [
     skills: ['consultative sales', 'office services', 'vendor negotiation', 'workplace experience', 'Notion'],
     companies: ['DeskPerks Consulting'],
     fitSignal: 'Medium',
-    verificationRisk: 'Medium',
+    clarificationNeed: 'Medium',
     evidenceStrength: 'Strong',
     genericAnswerRisk: 'Low',
     instructionFollowing: 'Complete',
-    suggestedNextStep: 'Manual review',
+    clarificationCount: 2,
     brief: {
       overallRead:
         'Credible buyer expert with strong consultative examples, but the recruiter should clarify fit for a quota-carrying AE role and structured sales environment.',
@@ -1169,7 +1169,7 @@ export const candidates: Candidate[] = [
       ],
       genericAnswerNotes: [
         'Answers are specific, candid, and grounded in a real client example.',
-        'Low generic risk because the response names a concrete workplace-perks problem.',
+        'Response names a concrete workplace-perks problem.',
         'Application directly addresses why this role, not just any sales role.',
       ],
       instructionChecks: [
@@ -1202,7 +1202,7 @@ export const candidates: Candidate[] = [
       reasonToStillInterview:
         'Her buyer insight and consultative credibility may be valuable for complex workplace-experience deals.',
       suggestedNextStep:
-        'Manual review if the team is open to nontraditional AE profiles.',
+        'Clarify whether the team is open to nontraditional AE profiles.',
     },
   },
 ]

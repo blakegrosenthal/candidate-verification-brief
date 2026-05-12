@@ -3,7 +3,7 @@ import type { InstructionFollowing, Signal } from '../types'
 
 export type FilterState = {
   fitSignal: 'All' | Signal
-  verificationRisk: 'All' | Signal
+  clarificationNeed: 'All' | Signal
   genericAnswerRisk: 'All' | Signal
   instructionFollowing: 'All' | InstructionFollowing
 }
@@ -77,10 +77,10 @@ export function Filters({
           onChange={(value) => onFilterChange('fitSignal', value)}
         />
         <SelectFilter
-          label="Verification concern"
-          value={filters.verificationRisk}
+          label="Clarification need"
+          value={filters.clarificationNeed}
           options={signalOptions}
-          onChange={(value) => onFilterChange('verificationRisk', value)}
+          onChange={(value) => onFilterChange('clarificationNeed', value)}
         />
         <SelectFilter
           label="Generic answers"
